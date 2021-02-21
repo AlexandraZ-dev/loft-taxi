@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Auth = ({auth, login}) => {
+export const Auth = ({navigateTo}) => {
   return (
     <>
       <h1>Регистрация</h1>
@@ -15,11 +15,11 @@ export const Auth = ({auth, login}) => {
         <input id='password' type='password' name='password' size='58' placeholder='Пароль*'/>
         <br/>
         <br/>
-        <button onClick={auth}>Зарегистрироваться</button>
+        <button onClick={() => navigateTo('maps')}>Зарегистрироваться</button>
       </form>
       <br/>
       <br/>
-      <p>Уже зарегистрован? <button type='button' onClick={login}>Войти</button></p>
+      <p>Уже зарегистрован? <button type='button' onClick={() => navigateTo('login')}>Войти</button></p>
     </>
   )
 }

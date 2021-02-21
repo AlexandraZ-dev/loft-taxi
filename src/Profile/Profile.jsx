@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Profile = () => {
+export const Profile = ({navigateTo}) => {
   return (
     <>
       <h1>Профиль</h1>
@@ -16,7 +16,7 @@ export const Profile = () => {
         <input id='cvc' type='text' name='cvc' size='28' placeholder='CVC*'/>
         <br/>
         <br/>
-        <button>Сохранить</button>
+        <button onClick={()=> navigateTo('maps')}>Сохранить</button>
       </form>
     </>
   )
