@@ -37,15 +37,15 @@ export const Header = ({navigateTo}) => {
         >
           <Logo/>
           <Toolbar disableGutters={true}>
-            <Button color="inherit" onClick={() => navigateTo('maps')
-            }>Карты
+            <Button data-testid='navigateMaps' color="inherit" onClick={() => navigateTo('maps')
+            }>Maps
             </Button>
 
-            <Button color="inherit" onClick={() => navigateTo('profile')
+            <Button data-testid='navigateProfile' color="inherit" onClick={() => navigateTo('profile')
             }>Profile
             </Button>
 
-            <Button color="inherit" onClick={loginOut}>Выйти</Button>
+            <Button data-testid='navigateLoginOut' color="inherit" onClick={loginOut}>Log out</Button>
           </Toolbar>
 
         </Grid>

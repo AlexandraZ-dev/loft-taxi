@@ -22,7 +22,7 @@ export const Maps = () => {
     });
 
     // Add navigation control (the +/- zoom buttons)
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    // map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     map.touchPitch.enable(true);
 

@@ -25,6 +25,7 @@ export const Profile = ({navigateTo}) => {
                 <Box marginRight='100px'>
                   <TextField
                     id="name"
+                    data-testid='name'
                     label='Имя владельца'
                     type="text"
                     name="name"
@@ -36,6 +37,7 @@ export const Profile = ({navigateTo}) => {
 
                   <TextField
                     id="numberCard"
+                    data-testid='numberCard'
                     label='Номер карты'
                     type="text"
                     name="numberCard"
@@ -47,6 +49,7 @@ export const Profile = ({navigateTo}) => {
                   <Box display='flex'>
                     <TextField
                       id="date"
+                      data-testid='date'
                       label='MM/YY'
                       type="date"
                       name="date"
@@ -58,6 +61,7 @@ export const Profile = ({navigateTo}) => {
                     />
                     <TextField
                       id="cvc"
+                      data-testid='cvc'
                       label='CVC'
                       type="text"
                       name="cvc"
@@ -80,7 +84,7 @@ export const Profile = ({navigateTo}) => {
                        }}>
                   <Box display='flex' justifyItems='row' justifyContent='space-between'>
                     <LogoForCard/>
-                    <Typography variant='body1'>MM/YY</Typography>
+                    <Typography variant='body1'>Date</Typography>
                   </Box>
                   <Typography variant='body1' style={{
                     fontSize: "22px",
@@ -98,7 +102,7 @@ export const Profile = ({navigateTo}) => {
                 display: "flex",
                 justifyContent: "center"
               }}>
-                <Button type='submit' variant='contained' color='primary'
+                <Button type='submit' data-testid='submitButton' variant='contained' color='primary'
                         style={{
                           borderRadius: "40px",
                           fontSize: "1.3rem",
