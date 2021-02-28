@@ -1,25 +1,35 @@
 import React from 'react'
+import {
+  Box,
+  makeStyles,
+  Paper,
+} from "@material-ui/core";
+import {AuthModal} from "./AuthModal/AuthModal";
+import {LogoForHeader} from "../Login/LogoForHeader/LogoForHeader";
+
+const useStyles = makeStyles((theme) => ({
+  backgroundBlack: {
+    backgroundColor: "black",
+    color: "white"
+  },
+}));
+
 
 export const Auth = ({navigateTo}) => {
+  const classes = useStyles();
   return (
-    <>
-      <h1>Регистрация</h1>
-      <form>
-        <input id='email' type='email' name='email' size='58' placeholder='Адрес электронной почты*'/>
-        <br/>
-        <br/>
-        <input id='name' type='text' name='name' size='28' placeholder='Имя*'/>
-        <input id='lastName' type='text' name='lastName' size='28' placeholder='Фамилия*'/>
-        <br/>
-        <br/>
-        <input id='password' type='password' name='password' size='58' placeholder='Пароль*'/>
-        <br/>
-        <br/>
-        <button onClick={() => navigateTo('maps')}>Зарегистрироваться</button>
-      </form>
-      <br/>
-      <br/>
-      <p>Уже зарегистрован? <button type='button' onClick={() => navigateTo('login')}>Войти</button></p>
-    </>
+    <Box display="flex" direction="row">
+      <Box width="34%" height='100vh' display="flex" className={classes.backgroundBlack} alignItems='center'
+           justifyContent="center">
+        <LogoForHeader/>
+      </Box>
+      <Box height='100vh' width="66%" display="flex" alignItems='center' justifyContent="center">
+        <Paper elevation={5} style={{borderRadius: "20px"}}>
+          <Box width="520px" padding='48px 0'>
+            <AuthModal navigateTo={navigateTo}/>
+          </Box>
+        </Paper>
+      </Box>
+    </Box>
   )
 }
