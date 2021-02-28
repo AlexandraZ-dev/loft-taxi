@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Link, Typography} from "@material-ui/core";
 import {AuthForm} from "./AuthForm/AuthForm";
+import PropTypes from "prop-types";
 
 export const AuthModal = ({navigateTo}) => {
   return (
@@ -32,4 +33,8 @@ export const AuthModal = ({navigateTo}) => {
       </div>
     </>
   )
+}
+
+AuthModal.propTypes = {
+  navigateTo: PropTypes.func.isRequired,
 }

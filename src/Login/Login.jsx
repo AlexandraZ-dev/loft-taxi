@@ -7,8 +7,9 @@ import {
 import {LoginModal} from "./LoginModal/LoginModal";
 import {LogoForHeader} from "./LogoForHeader/LogoForHeader";
 import {AuthContext} from "../AuthContext";
+import PropTypes from "prop-types";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   backgroundBlack: {
     backgroundColor: "black",
     color: "white"
@@ -39,4 +40,8 @@ export const Login = ({navigateTo}) => {
       </Box>
     </Box>
   )
+}
+
+Login.propTypes = {
+  navigateTo: PropTypes.func.isRequired
 }

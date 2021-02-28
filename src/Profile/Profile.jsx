@@ -2,6 +2,7 @@ import React from 'react'
 import {Box, Button, Paper, TextField, Typography} from "@material-ui/core";
 import {LogoForCard} from "./LogoForCard/LogoForCard";
 import {LogoChipCode} from "./LogoChipCode/LogoChipCode";
+import PropTypes from "prop-types";
 
 export const Profile = ({navigateTo}) => {
   return (
@@ -112,4 +113,8 @@ export const Profile = ({navigateTo}) => {
       </Paper>
     </Box>
   )
+}
+
+Profile.propTypes = {
+  navigateTo: PropTypes.func.isRequired
 }

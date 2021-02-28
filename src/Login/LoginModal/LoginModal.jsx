@@ -1,6 +1,7 @@
 import React from 'react'
 import {Container, Link, Typography} from "@material-ui/core";
 import {LoginForm} from "./LoginForm/LoginForm";
+import PropTypes from "prop-types";
 
 export const LoginModal = ({navigateTo, onSubmit}) => {
   return (
@@ -32,4 +33,9 @@ export const LoginModal = ({navigateTo, onSubmit}) => {
       </div>
     </>
   )
+}
+
+LoginModal.propTypes = {
+  navigateTo: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 }

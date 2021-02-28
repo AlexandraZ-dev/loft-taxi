@@ -1,5 +1,6 @@
 import React from 'react'
 import {Box, Button, TextField} from "@material-ui/core";
+import PropTypes from "prop-types";
 
 export const AuthForm = ({navigateTo}) => {
   return (
@@ -52,4 +53,8 @@ export const AuthForm = ({navigateTo}) => {
     </form>
 
   )
+}
+
+AuthForm.propTypes = {
+  navigateTo: PropTypes.func.isRequired,
 }

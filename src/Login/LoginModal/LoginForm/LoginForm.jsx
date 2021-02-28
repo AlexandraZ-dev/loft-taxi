@@ -3,6 +3,7 @@ import {
   Button,
   TextField
 } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 export const LoginForm = ({navigateTo, onSubmit}) => {
   return (
@@ -34,4 +35,9 @@ export const LoginForm = ({navigateTo, onSubmit}) => {
     </form>
 
   )
+}
+
+LoginForm.propTypes = {
+  navigateTo: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 }

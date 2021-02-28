@@ -6,8 +6,9 @@ import {
 } from "@material-ui/core";
 import {AuthModal} from "./AuthModal/AuthModal";
 import {LogoForHeader} from "../Login/LogoForHeader/LogoForHeader";
+import PropTypes from "prop-types";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   backgroundBlack: {
     backgroundColor: "black",
     color: "white"
@@ -32,4 +33,8 @@ export const Auth = ({navigateTo}) => {
       </Box>
     </Box>
   )
+}
+
+Auth.propTypes = {
+  navigateTo: PropTypes.func.isRequired,
 }

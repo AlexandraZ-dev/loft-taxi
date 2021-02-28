@@ -2,8 +2,9 @@ import React, {useContext} from 'react';
 import {AppBar, Button, Container, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Logo} from "./Logo/Logo";
 import {AuthContext} from "../AuthContext";
+import PropTypes from "prop-types";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -51,6 +52,9 @@ export const Header = ({navigateTo}) => {
       </Container>
     </AppBar>
   )
+}
 
+Header.propTypes = {
+  navigateTo: PropTypes.func.isRequired
 }
 
