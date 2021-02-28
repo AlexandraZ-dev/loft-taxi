@@ -1,21 +1,35 @@
 import React from 'react'
+import {
+  Box,
+  makeStyles,
+  Paper,
+} from "@material-ui/core";
+import {LoginModal} from "./LoginModal/LoginModal";
+import {LogoForHeader} from "./LogoForHeader/LogoForHeader";
+
+const useStyles = makeStyles((theme) => ({
+  backgroundBlack: {
+    backgroundColor: "black",
+    color: "white"
+  },
+}));
+
 
 export const Login = ({navigateTo}) => {
+  const classes = useStyles();
   return (
-    <>
-      <h1>Войти</h1>
-      <form>
-        <input id='email' type='email' name='email' size='58' placeholder='Имя пользователя*'/>
-        <br/>
-        <br/>
-        <input id='password' type='password' name='password' size='58' placeholder='Пароль*'/>
-        <br/>
-        <br/>
-        <button onClick={() => navigateTo('maps')}>Войти</button>
-      </form>
-      <br/>
-      <br/>
-      <p>Новый пользователь? <button type='button' onClick={() => navigateTo('auth')}>Зарегистрируйтесь</button></p>
-    </>
+    <Box display="flex" direction="row">
+      <Box width="34%" height='100vh' display="flex" className={classes.backgroundBlack} alignItems='center'
+           justifyContent="center">
+        <LogoForHeader/>
+      </Box>
+      <Box height='100vh' width="66%" display="flex" alignItems='center' justifyContent="center">
+        <Paper elevation={5} style={{borderRadius: "20px"}}>
+          <Box width="520px" padding='48px 0'>
+            <LoginModal navigateTo={navigateTo}/>
+          </Box>
+        </Paper>
+      </Box>
+    </Box>
   )
 }
