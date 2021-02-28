@@ -1,32 +1,29 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Profile} from './Profile/Profile'
 import {Auth} from "./Auth/Auth";
 import {Maps} from "./Maps/Maps";
 import {Login} from "./Login/Login";
 import {Header} from "./Header/Header";
 
-class App extends Component {
-  state = {currentPage: 'login'}
+export const App =() => {
+const [page, setPage] = useState('login')
 
-  navigateTo = (page) => {
-    this.setState({currentPage: page})
+  const navigateTo = (currentPage) => {
+    setPage(currentPage)
   }
 
-  PAGES = {
-    login: <Login navigateTo={this.navigateTo} />,
-    auth: <Auth navigateTo={this.navigateTo}/>,
+  const PAGES = {
+    login: <Login navigateTo={navigateTo} />,
+    auth: <Auth navigateTo={navigateTo}/>,
     maps: <Maps/>,
-    profile: <Profile navigateTo={this.navigateTo}/>
+    profile: <Profile navigateTo={navigateTo}/>
   }
 
-  render() {
     return (<>
-      <Header navigateTo={this.navigateTo}/>
+      <Header navigateTo={navigateTo}/>
       <main>
-        <section>{this.PAGES[this.state.currentPage]}</section>
+        <section>{PAGES[page]}</section>
       </main>
     </>)
-  }
 }
 
-export default App
