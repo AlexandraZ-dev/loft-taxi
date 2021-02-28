@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {AppBar, Button, Container, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Logo} from "./Logo/Logo";
+import {AuthContext} from "../AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,13 +13,18 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     "&.active": {
-      background:'black',
+      background: 'black',
     },
   },
 }));
 
 export const Header = ({navigateTo}) => {
   const classes = useStyles();
+  const {logOut} = useContext(AuthContext)
+  const loginOut = () => {
+    logOut()
+    navigateTo('login')
+  }
   return (
     <AppBar position="static" className={classes.header}>
       <Container>
@@ -38,9 +44,7 @@ export const Header = ({navigateTo}) => {
             }>Profile
             </Button>
 
-            <Button color="inherit" onClick={() => navigateTo('login')
-            }>Выйти
-            </Button>
+            <Button color="inherit" onClick={loginOut}>Выйти</Button>
           </Toolbar>
 
         </Grid>

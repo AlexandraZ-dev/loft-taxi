@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {
   Box,
   makeStyles,
@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import {LoginModal} from "./LoginModal/LoginModal";
 import {LogoForHeader} from "./LogoForHeader/LogoForHeader";
+import {AuthContext} from "../AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   backgroundBlack: {
@@ -17,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Login = ({navigateTo}) => {
   const classes = useStyles();
+  const {logIn} = useContext(AuthContext)
+  const onSubmitLogin = (event) => {
+    event.preventDefault()
+    const {email, password} = event.target
+    logIn(email.value, password.value)
+  }
   return (
     <Box display="flex" direction="row">
       <Box width="34%" height='100vh' display="flex" className={classes.backgroundBlack} alignItems='center'
@@ -26,7 +33,7 @@ export const Login = ({navigateTo}) => {
       <Box height='100vh' width="66%" display="flex" alignItems='center' justifyContent="center">
         <Paper elevation={5} style={{borderRadius: "20px"}}>
           <Box width="520px" padding='48px 0'>
-            <LoginModal navigateTo={navigateTo}/>
+            <LoginModal navigateTo={navigateTo} onSubmit={onSubmitLogin}/>
           </Box>
         </Paper>
       </Box>

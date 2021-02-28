@@ -1,13 +1,8 @@
 import React from 'react'
-import {
-  Button,
-  Container,
-  Link,
-  TextField, Typography
-} from "@material-ui/core";
+import {Container, Link, Typography} from "@material-ui/core";
 import {LoginForm} from "./LoginForm/LoginForm";
 
-export const LoginModal = ({navigateTo}) => {
+export const LoginModal = ({navigateTo, onSubmit}) => {
   return (
     <>
       <Container style={{
@@ -19,7 +14,7 @@ export const LoginModal = ({navigateTo}) => {
         <Typography variant="h4" gutterBottom>
           Войти
         </Typography>
-        <LoginForm navigateTo={navigateTo}/>
+        <LoginForm navigateTo={navigateTo} onSubmit={onSubmit}/>
       </Container>
       <div style={{display: "block", flexDirection: 'column', justifyContent: 'flex-start', paddingLeft: "98px"}}>
         <Typography variant='body1'>Новый пользователь?</Typography>

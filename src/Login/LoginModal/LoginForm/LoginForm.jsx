@@ -4,15 +4,15 @@ import {
   TextField
 } from "@material-ui/core";
 
-export const LoginForm = ({navigateTo}) => {
+export const LoginForm = ({navigateTo, onSubmit}) => {
   return (
 
-    <form style={{marginBottom: '24px'}}>
+    <form style={{marginBottom: '24px'}} onSubmit={onSubmit}>
       <TextField
-        id="name"
+        id="email"
         label='Имя пользователя'
         type="text"
-        name="name"
+        name="email"
         margin="normal"
         fullWidth
         color="primary"
