@@ -18,7 +18,7 @@ export const LoginModal = ({navigateTo, onSubmit}) => {
         </Typography>
         <LoginForm navigateTo={navigateTo} onSubmit={onSubmit}/>
       </Container>
-      <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={navigateTo} buttonText={'Зарегистрируйтесь'} />
+      <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={() => navigateTo('singUp')} buttonText={'Зарегистрируйтесь'} />
     </>
   )
 }

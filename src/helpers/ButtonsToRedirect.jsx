@@ -13,7 +13,7 @@ export const ButtonsToRedirect = ({buttonText, tittle, navigateTo}) => {
         }}
         component="button"
         variant="body1"
-        onClick={() => navigateTo('login')}
+        onClick={navigateTo}
       >
         {buttonText}
       </Link>

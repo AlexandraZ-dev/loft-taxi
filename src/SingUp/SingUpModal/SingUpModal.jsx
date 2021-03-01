@@ -18,7 +18,7 @@ export const SingUpModal = ({navigateTo}) => {
         </Typography>
         <SingUpForm navigateTo={navigateTo} />
       </Container>
-      <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={navigateTo} buttonText={'Войти'} />
+      <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={() => navigateTo('login')} buttonText={'Войти'} />
     </>
   )
 }
