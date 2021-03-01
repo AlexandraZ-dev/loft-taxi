@@ -1,7 +1,8 @@
 import React from 'react'
-import {Container, Link, Typography} from "@material-ui/core";
+import {Container, Typography} from "@material-ui/core";
 import {LoginForm} from "./LoginForm/LoginForm";
 import PropTypes from "prop-types";
+import {ButtonsToRedirect} from "../../helpers/ButtonsToRedirect";
 
 export const LoginModal = ({navigateTo, onSubmit}) => {
   return (
@@ -17,20 +18,7 @@ export const LoginModal = ({navigateTo, onSubmit}) => {
         </Typography>
         <LoginForm navigateTo={navigateTo} onSubmit={onSubmit}/>
       </Container>
-      <div style={{display: "block", flexDirection: 'column', justifyContent: 'flex-start', paddingLeft: "98px"}}>
-        <Typography variant='body1'>Новый пользователь?</Typography>
-        <Link
-          style={{
-            textDecoration: "none",
-            color: "rgb(253, 191, 90)"
-          }}
-          component="button"
-          variant="body1"
-          onClick={() => navigateTo('auth')}
-        >
-          Зарегистрируйтесь
-        </Link>
-      </div>
+      <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={navigateTo} buttonText={'Зарегистрируйтесь'} />
     </>
   )
 }

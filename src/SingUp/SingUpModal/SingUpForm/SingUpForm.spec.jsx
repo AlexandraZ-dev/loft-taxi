@@ -1,13 +1,13 @@
 import React from 'react'
 import {render, screen, fireEvent} from '@testing-library/react'
-import {AuthForm} from "./AuthForm";
+import {SingUpForm} from "./AuthForm";
 
 describe('AuthForm', () => {
   it('render inputs correctly', () => {
     const navigateTo = () =>{
       return 'login'
     }
-    render(<AuthForm navigateTo={navigateTo}/>)
+    render(<SingUpForm navigateTo={navigateTo}/>)
     
     expect(screen.getByTestId('email')).toContainElement(screen.getByText('Адрес электронной почты'))
     expect(screen.getByTestId('name')).toContainElement(screen.getByText('Имя'))
@@ -18,7 +18,7 @@ describe('AuthForm', () => {
 
   it('button click', ()=>{
     const onSubmit = jest.fn(e => e.preventDefault);
-    render(<AuthForm navigateTo={onSubmit}/>)
+    render(<SingUpForm navigateTo={onSubmit}/>)
     const button = screen.getByText("Зарегистрироваться");
 
     fireEvent.click(button)

@@ -4,7 +4,7 @@ import {
   makeStyles,
   Paper,
 } from "@material-ui/core";
-import {AuthModal} from "./AuthModal/AuthModal";
+import {SingUpModal} from "./SingUpModal/SingUpModal";
 import {LogoForHeader} from "../Login/LogoForHeader/LogoForHeader";
 import PropTypes from "prop-types";
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-export const Auth = ({navigateTo}) => {
+export const SingUp = ({navigateTo}) => {
   const classes = useStyles();
   return (
     <Box display="flex" direction="row">
@@ -27,7 +27,7 @@ export const Auth = ({navigateTo}) => {
       <Box height='100vh' width="66%" display="flex" alignItems='center' justifyContent="center">
         <Paper elevation={5} style={{borderRadius: "20px"}}>
           <Box width="520px" padding='48px 0'>
-            <AuthModal navigateTo={navigateTo}/>
+            <SingUpModal navigateTo={navigateTo}/>
           </Box>
         </Paper>
       </Box>
@@ -35,6 +35,6 @@ export const Auth = ({navigateTo}) => {
   )
 }
 
-Auth.propTypes = {
+SingUp.propTypes = {
   navigateTo: PropTypes.func.isRequired,
 }

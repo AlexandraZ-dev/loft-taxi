@@ -1,6 +1,5 @@
 import React from 'react'
 import {App} from "./App";
-import { toBeInTheDocument } from '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 // import AuthProvider from './AuthContext';
 
@@ -15,7 +14,6 @@ describe('App', () => {
 })
 
 
-expect.extend({ toBeInTheDocument});
 
 // describe('App with use Context', () =>{
 //   it('Test to check name from global context', () => {
