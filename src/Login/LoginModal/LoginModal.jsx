@@ -4,7 +4,7 @@ import {LoginForm} from "./LoginForm/LoginForm";
 import PropTypes from "prop-types";
 import {ButtonsToRedirect} from "../../helpers/ButtonsToRedirect";
 
-export const LoginModal = ({navigateTo, onSubmit}) => {
+export const LoginModal = ({navigateTo, onSubmit, navigateToWhenIsLoggedOut}) => {
   return (
     <>
       <Container style={{
@@ -18,12 +18,13 @@ export const LoginModal = ({navigateTo, onSubmit}) => {
         </Typography>
         <LoginForm navigateTo={navigateTo} onSubmit={onSubmit}/>
       </Container>
-      <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={() => navigateTo('singUp')} buttonText={'Зарегистрируйтесь'} />
+      <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={() => navigateToWhenIsLoggedOut('singUp')} buttonText={'Зарегистрируйтесь'} />
     </>
   )
 }
 
 LoginModal.propTypes = {
   navigateTo: PropTypes.func.isRequired,
+  navigateToWhenIsLoggedOut: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 }

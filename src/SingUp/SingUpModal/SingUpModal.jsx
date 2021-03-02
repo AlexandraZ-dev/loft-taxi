@@ -4,7 +4,7 @@ import {SingUpForm} from "./SingUpForm/SingUpForm";
 import PropTypes from "prop-types";
 import {ButtonsToRedirect} from "../../helpers/ButtonsToRedirect";
 
-export const SingUpModal = ({navigateTo}) => {
+export const SingUpModal = ({navigateTo, navigateToWhenIsLoggedOut}) => {
   return (
     <>
       <Container style={{
@@ -18,11 +18,12 @@ export const SingUpModal = ({navigateTo}) => {
         </Typography>
         <SingUpForm navigateTo={navigateTo} />
       </Container>
-      <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={() => navigateTo('login')} buttonText={'Войти'} />
+      <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={() => navigateToWhenIsLoggedOut('login')} buttonText={'Войти'} />
     </>
   )
 }
 
 SingUpModal.propTypes = {
+  navigateToWhenIsLoggedOut: PropTypes.func.isRequired,
   navigateTo: PropTypes.func.isRequired,
 }

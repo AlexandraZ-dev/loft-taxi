@@ -10,13 +10,17 @@ export const App = () => {
   const [page, setPage] = useState('login')
   const {isLoggedIn} = useContext(AuthContext)
 
+  const navigateToWhenIsLoggedOut = (currentPage) => {
+    !isLoggedIn && setPage(currentPage)
+  }
+
   const navigateTo = (currentPage) => {
-    isLoggedIn ? setPage(currentPage) : (setPage('login')|| setPage('singUp'))
+    isLoggedIn && setPage(currentPage)
   }
 
   const PAGES = {
-    login: <Login navigateTo={navigateTo}/>,
-    singUp: <SingUp navigateTo={navigateTo}/>,
+    login: <Login navigateTo={navigateTo} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>,
+    singUp: <SingUp navigateTo={navigateTo} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>,
     maps: <Maps/>,
     profile: <Profile navigateTo={navigateTo}/>
   }

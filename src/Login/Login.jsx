@@ -4,7 +4,7 @@ import {AuthContext} from "../AuthContext";
 import PropTypes from "prop-types";
 import {BasePage} from "../helpers/BasePage";
 
-export const Login = ({navigateTo}) => {
+export const Login = ({navigateTo, navigateToWhenIsLoggedOut}) => {
   const {logIn} = useContext(AuthContext)
   const onSubmitLogin = (event) => {
     event.preventDefault()
@@ -13,12 +13,13 @@ export const Login = ({navigateTo}) => {
   }
   return (
     <BasePage>
-      <LoginModal navigateTo={navigateTo} onSubmit={onSubmitLogin}/>
+      <LoginModal navigateTo={navigateTo} onSubmit={onSubmitLogin} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>
     </BasePage>
 
   )
 }
 
 Login.propTypes = {
-  navigateTo: PropTypes.func.isRequired
+  navigateTo: PropTypes.func.isRequired,
+  navigateToWhenIsLoggedOut: PropTypes.func.isRequired
 }
