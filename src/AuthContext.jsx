@@ -9,10 +9,7 @@ export const AuthProvider = ({children}) => {
     if (email !== 'test@test.com' || password !== '123123') {
       return
     }
-    console.log(isLoggedIn);
     setIsLoggedIn(true)
-    console.log(isLoggedIn);
-
   }
 
   const logOut = () => {
