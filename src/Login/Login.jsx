@@ -1,21 +1,25 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {LoginModal} from "./LoginModal/LoginModal";
+import {AuthContext} from "../AuthContext";
+import PropTypes from "prop-types";
+import {BasePage} from "../helpers/BasePage";
 
-export const Login = ({navigateTo}) => {
+export const Login = ({navigateTo, navigateToWhenIsLoggedOut}) => {
+  const {logIn} = useContext(AuthContext)
+  const onSubmitLogin = (event) => {
+    event.preventDefault()
+    const {email, password} = event.target
+    logIn(email.value, password.value)
+  }
   return (
-    <>
-      <h1>Войти</h1>
-      <form>
-        <input id='email' type='email' name='email' size='58' placeholder='Имя пользователя*'/>
-        <br/>
-        <br/>
-        <input id='password' type='password' name='password' size='58' placeholder='Пароль*'/>
-        <br/>
-        <br/>
-        <button onClick={() => navigateTo('maps')}>Войти</button>
-      </form>
-      <br/>
-      <br/>
-      <p>Новый пользователь? <button type='button' onClick={() => navigateTo('auth')}>Зарегистрируйтесь</button></p>
-    </>
+    <BasePage>
+      <LoginModal navigateTo={navigateTo} onSubmit={onSubmitLogin} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>
+    </BasePage>
+
   )
+}
+
+Login.propTypes = {
+  navigateTo: PropTypes.func.isRequired,
+  navigateToWhenIsLoggedOut: PropTypes.func.isRequired
 }

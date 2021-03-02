@@ -1,32 +1,36 @@
-import React, {Component} from 'react';
+import React, {useContext, useState} from 'react';
 import {Profile} from './Profile/Profile'
-import {Auth} from "./Auth/Auth";
+import {SingUp} from "./SingUp/SingUp";
 import {Maps} from "./Maps/Maps";
 import {Login} from "./Login/Login";
 import {Header} from "./Header/Header";
+import {AuthContext} from "./AuthContext";
 
-class App extends Component {
-  state = {currentPage: 'login'}
+export const App = () => {
+  const [page, setPage] = useState('login')
+  const {isLoggedIn} = useContext(AuthContext)
 
-  navigateTo = (page) => {
-    this.setState({currentPage: page})
+  const navigateToWhenIsLoggedOut = (currentPage) => {
+    !isLoggedIn && setPage(currentPage)
   }
 
-  PAGES = {
-    login: <Login navigateTo={this.navigateTo} />,
-    auth: <Auth navigateTo={this.navigateTo}/>,
+  const navigateTo = (currentPage) => {
+    isLoggedIn && setPage(currentPage)
+  }
+
+  const PAGES = {
+    login: <Login navigateTo={navigateTo} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>,
+    singUp: <SingUp navigateTo={navigateTo} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>,
     maps: <Maps/>,
-    profile: <Profile navigateTo={this.navigateTo}/>
+    profile: <Profile navigateTo={navigateTo}/>
   }
 
-  render() {
-    return (<>
-      <Header navigateTo={this.navigateTo}/>
+  return (
+    <>
+      {isLoggedIn && <Header navigateTo={navigateTo}/>}
       <main>
-        <section>{this.PAGES[this.state.currentPage]}</section>
+        <section>{PAGES[page]}</section>
       </main>
     </>)
-  }
 }
 
-export default App
