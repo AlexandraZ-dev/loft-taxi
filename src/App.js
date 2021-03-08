@@ -1,36 +1,35 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import {Profile} from './Profile/Profile'
-import {SingUp} from "./SingUp/SingUp";
 import {Maps} from "./Maps/Maps";
-import {Login} from "./Login/Login";
-import {Header} from "./Header/Header";
-import {AuthContext} from "./AuthContext";
+import {LoginWithAuth} from "./Login/Login";
+import { HeaderWithAuth} from "./Header/Header";
+import {SingUp} from "./SingUp/SingUp";
+import {Switch, Route, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 
-export const App = () => {
-  const [page, setPage] = useState('login')
-  const {isLoggedIn} = useContext(AuthContext)
-
-  const navigateToWhenIsLoggedOut = (currentPage) => {
-    !isLoggedIn && setPage(currentPage)
-  }
-
-  const navigateTo = (currentPage) => {
-    isLoggedIn && setPage(currentPage)
-  }
-
-  const PAGES = {
-    login: <Login navigateTo={navigateTo} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>,
-    singUp: <SingUp navigateTo={navigateTo} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>,
-    maps: <Maps/>,
-    profile: <Profile navigateTo={navigateTo}/>
-  }
-
+const App = ({isLoggedIn}) => {
   return (
     <>
-      {isLoggedIn && <Header navigateTo={navigateTo}/>}
+      {isLoggedIn && <HeaderWithAuth/>}
       <main>
-        <section>{PAGES[page]}</section>
+        <Switch>
+          <Route exact path="/" component={LoginWithAuth}/>
+          <Route path="/singup" component={SingUp}/>
+          {!isLoggedIn ?
+            <Redirect to="/"/> :
+            (<>
+              <Route path="/maps" component={Maps}/>
+              <Route path="/profile" component={Profile}/>
+            </>)}
+        </Switch>
       </main>
     </>)
 }
+
+export const AppWithAuth = connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+)(App)
+
+
+
 

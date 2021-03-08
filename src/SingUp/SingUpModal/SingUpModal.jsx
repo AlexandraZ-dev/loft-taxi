@@ -1,10 +1,9 @@
 import React from 'react'
 import { Container, Typography} from "@material-ui/core";
 import {SingUpForm} from "./SingUpForm/SingUpForm";
-import PropTypes from "prop-types";
 import {ButtonsToRedirect} from "../../helpers/ButtonsToRedirect";
 
-export const SingUpModal = ({navigateTo, navigateToWhenIsLoggedOut}) => {
+export const SingUpModal = () => {
   return (
     <>
       <Container style={{
@@ -16,14 +15,10 @@ export const SingUpModal = ({navigateTo, navigateToWhenIsLoggedOut}) => {
         <Typography variant="h4" gutterBottom>
           Регистрация
         </Typography>
-        <SingUpForm navigateTo={navigateTo} />
+        <SingUpForm />
       </Container>
-      <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={() => navigateToWhenIsLoggedOut('login')} buttonText={'Войти'} />
+      <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={'/login'} buttonText={'Войти'} />
     </>
   )
 }
 
-SingUpModal.propTypes = {
-  navigateToWhenIsLoggedOut: PropTypes.func.isRequired,
-  navigateTo: PropTypes.func.isRequired,
-}

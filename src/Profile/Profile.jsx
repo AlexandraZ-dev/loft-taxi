@@ -2,9 +2,8 @@ import React from 'react'
 import {Box, Button, Paper, TextField, Typography} from "@material-ui/core";
 import {LogoForCard} from "./LogoForCard/LogoForCard";
 import {LogoChipCode} from "./LogoChipCode/LogoChipCode";
-import PropTypes from "prop-types";
 
-export const Profile = ({navigateTo}) => {
+export const Profile = () => {
   return (
     <Box display='flex' justifyContent='center' alignItems="center" paddingTop='10rem'>
       <Paper elevation={2} variant="outlined" square={false} style={{
@@ -108,7 +107,8 @@ export const Profile = ({navigateTo}) => {
                           fontSize: "1.3rem",
                           width: "350px",
                         }}
-                        onClick={() => navigateTo('maps')}>Сохранить</Button>
+                        href='/maps'
+                >Сохранить</Button>
               </div>
 
             </form>
@@ -117,8 +117,4 @@ export const Profile = ({navigateTo}) => {
       </Paper>
     </Box>
   )
-}
-
-Profile.propTypes = {
-  navigateTo: PropTypes.func.isRequired
 }

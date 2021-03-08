@@ -1,8 +1,9 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {AppBar, Button, Container, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Logo} from "./Logo/Logo";
-import {AuthContext} from "../AuthContext";
-import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {logOut} from "../actions";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,13 +20,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const Header = ({navigateTo}) => {
+export const Header = ({logOut}) => {
   const classes = useStyles();
-  const {logOut} = useContext(AuthContext)
-  const loginOut = () => {
-    logOut()
-    navigateTo('login')
-  }
+
   return (
     <AppBar position="static" className={classes.header}>
       <Container>
@@ -37,15 +34,15 @@ export const Header = ({navigateTo}) => {
         >
           <Logo/>
           <Toolbar disableGutters={true}>
-            <Button data-testid='navigateMaps' color="inherit" onClick={() => navigateTo('maps')
-            }>Maps
+            <Button data-testid='navigateMaps' color="inherit" ><Link to='/maps'>Maps</Link>
             </Button>
 
-            <Button data-testid='navigateProfile' color="inherit" onClick={() => navigateTo('profile')
-            }>Profile
+            <Button data-testid='navigateProfile' color="inherit" ><Link to='profile'>Profile</Link>
             </Button>
 
-            <Button data-testid='navigateLoginOut' color="inherit" onClick={loginOut}>Log out</Button>
+            <Button data-testid='navigateLoginOut' color="inherit"
+                    onClick={logOut}
+            >Log out</Button>
           </Toolbar>
 
         </Grid>
@@ -54,7 +51,9 @@ export const Header = ({navigateTo}) => {
   )
 }
 
-Header.propTypes = {
-  navigateTo: PropTypes.func.isRequired
-}
+export const HeaderWithAuth = connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  {logOut}
+)(Header)
+
 
