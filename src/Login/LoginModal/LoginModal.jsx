@@ -25,5 +25,4 @@ export const LoginModal = ({onSubmit}) => {
 
 LoginModal.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  // handleChange: PropTypes.func.isRequired
 }

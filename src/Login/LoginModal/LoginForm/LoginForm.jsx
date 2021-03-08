@@ -4,15 +4,8 @@ import {
   TextField
 } from "@material-ui/core";
 import PropTypes from "prop-types";
-import {authenticate} from "../../../actions";
 
 export const LoginForm = ({onSubmit}) => {
-  // const onSubmitLogin = (e) => {
-  //   e.preventDefault()
-  //   const {email, password} = e.target
-  //   console.log(email.value);
-  //   authenticate(email.value, password.value)
-  // }
   return (
 
     <form style={{marginBottom: '24px'}} onSubmit={onSubmit}>

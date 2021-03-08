@@ -4,6 +4,12 @@ import {LogoForCard} from "./LogoForCard/LogoForCard";
 import {LogoChipCode} from "./LogoChipCode/LogoChipCode";
 
 export const Profile = () => {
+  const onSubmitProfile = (e) => {
+      e.preventDefault()
+      const {name, numberCard, date, cvc} = e.target
+      console.log(name.value, numberCard.value, date.value, cvc.value);
+      // authenticate(name.value, numberCard.value, date.value, cvc.value)
+  }
   return (
     <Box display='flex' justifyContent='center' alignItems="center" paddingTop='10rem'>
       <Paper elevation={2} variant="outlined" square={false} style={{
@@ -19,7 +25,7 @@ export const Profile = () => {
             variant="h4">Профиль</Typography>
           <Typography variant="body1">Введите платежные данные</Typography>
           <Box padding='40px 0'>
-            <form>
+            <form onSubmit={onSubmitProfile}>
               <Box display='flex' justifyItems='row' padding="40px 0">
                 <Box marginRight='100px'>
                   <TextField
