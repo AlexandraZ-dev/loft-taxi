@@ -1,6 +1,6 @@
 export const serverLogin = async (email, password) => {
   return fetch(
-    `https://loft-taxi.glitch.me/auth?username=${email}&password=${password}`
+    `https://loft-taxi.glitch.me/auth?email=${email}&password=${password}`, {method: "POST"}
   ).then(res => res.json()).then(data => console.log(data))
   // ).then(res => res.json()).then(data => data.success)
 }

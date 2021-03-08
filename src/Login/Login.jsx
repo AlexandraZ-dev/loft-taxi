@@ -4,12 +4,12 @@ import {BasePage} from "../helpers/BasePage";
 import {connect} from "react-redux";
 import {authenticate} from "../actions";
 
-export const Login = () => {
+export const Login = ({authenticate}) => {
   const onSubmitLogin = (e) => {
     e.preventDefault()
     const {email, password} = e.target
-    console.log(email.value);
     authenticate(email.value, password.value)
+
   }
   return (
     <BasePage>
