@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
   Button,
   TextField
@@ -7,28 +7,24 @@ import PropTypes from "prop-types";
 import {authenticate} from "../../../actions";
 
 export const LoginForm = ({onSubmit}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const onSubmitLogin = (e) => {
-    e.preventDefault()
-    // const {email, password} = e.value
-    console.log(email.value);
-    authenticate(setEmail(e.target.value), setPassword(e.target.value))
-  }
+  // const onSubmitLogin = (e) => {
+  //   e.preventDefault()
+  //   const {email, password} = e.target
+  //   console.log(email.value);
+  //   authenticate(email.value, password.value)
+  // }
   return (
 
-    <form style={{marginBottom: '24px'}} onSubmit={onSubmitLogin}>
+    <form style={{marginBottom: '24px'}} onSubmit={onSubmit}>
       <TextField
         id="email"
         data-testid='email'
         label='Имя пользователя'
-        type="text"
+        type="email"
         name="email"
-        value={email}
         margin="normal"
         fullWidth
         color="primary"
-        onChange={e => setEmail(e.target.value)}
         required
       />
       <TextField
@@ -37,11 +33,9 @@ export const LoginForm = ({onSubmit}) => {
         label='Пароль'
         type="password"
         name="password"
-        value={password}
         margin="normal"
         fullWidth
         color="primary"
-        onChange={e => setPassword(e.target.value)}
         required
       />
       <Button type='submit' data-testid='submitButton' fullWidth={true} variant='contained' color='primary'
@@ -54,5 +48,4 @@ export const LoginForm = ({onSubmit}) => {
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  // handleChange: PropTypes.func.isRequired
 }

@@ -5,15 +5,10 @@ import {connect} from "react-redux";
 import {authenticate} from "../actions";
 
 export const Login = () => {
-  // const handleChange = (event) => {
-  //   event.preventDefault()
-  //   const {email, password} = event.target
-  //   console.log(email, password);
-  // }
-  const onSubmitLogin = (event) => {
-    event.preventDefault()
-    const {email, password} = event.target
-    console.log(event.email.value);
+  const onSubmitLogin = (e) => {
+    e.preventDefault()
+    const {email, password} = e.target
+    console.log(email.value);
     authenticate(email.value, password.value)
   }
   return (
