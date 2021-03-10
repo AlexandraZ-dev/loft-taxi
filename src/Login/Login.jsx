@@ -12,7 +12,7 @@ export const Login = ({authenticate, logIn}) => {
     e.preventDefault()
     const {email, password} = e.target
     authenticate(email.value, password.value)
-    logIn()
+    // logIn()
     history.push('/maps')
 
   }
