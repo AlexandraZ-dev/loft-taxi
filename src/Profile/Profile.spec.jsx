@@ -8,7 +8,7 @@ describe('Profile', () => {
     render(<Profile navigateTo={navigateTo}/>)
     
     expect(screen.getByTestId('name')).toContainElement(screen.getByText('Имя владельца'))
-    expect(screen.getByTestId('numberCard')).toContainElement(screen.getByText('Номер карты'))
+    expect(screen.getByTestId('cardNumber')).toContainElement(screen.getByText('Номер карты'))
     expect(screen.getByTestId('date')).toContainElement(screen.getByText('MM/YY'))
     expect(screen.getByTestId('cvc')).toContainElement(screen.getByText('CVC'))
     expect(screen.getByTestId('submitButton')).toContainElement(screen.getByText('Сохранить'))

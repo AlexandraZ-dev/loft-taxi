@@ -37,12 +37,14 @@ export const Header = ({logOut}) => {
             <Button data-testid='navigateMaps' color="inherit" ><Link to='/maps'>Maps</Link>
             </Button>
 
-            <Button data-testid='navigateProfile' color="inherit" ><Link to='profile'>Profile</Link>
+            <Button data-testid='navigateProfile' color="inherit" ><Link to='/profile'>Profile</Link>
             </Button>
 
-            <Button data-testid='navigateLoginOut' color="inherit"
-                    onClick={logOut}
-            >Log out</Button>
+            {/*<Button data-testid='navigateLoginOut' color="inherit"*/}
+            {/*        onClick={logOut}*/}
+            <Link to='/' data-testid='navigateLoginOut' color="inherit"
+                   onClick={logOut}>LOG OUT</Link>
+          {/*</Button>*/}
           </Toolbar>
 
         </Grid>
@@ -52,7 +54,7 @@ export const Header = ({logOut}) => {
 }
 
 export const HeaderWithAuth = connect(
-  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  null,
   {logOut}
 )(Header)
 

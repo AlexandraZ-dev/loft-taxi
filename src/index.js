@@ -5,10 +5,13 @@ import {AppWithAuth} from "./App";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store } from './store'
+import {MuiPickersUtilsProvider} from "@material-ui/pickers";
+import DateFnsUtils from '@date-io/date-fns';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+
       <Provider store={store}>
         <AppWithAuth/>
       </Provider>

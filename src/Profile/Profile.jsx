@@ -1,14 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Box, Button, Paper, TextField, Typography} from "@material-ui/core";
+import MaterialInput from '@material-ui/core/Input';
 import {LogoForCard} from "./LogoForCard/LogoForCard";
 import {LogoChipCode} from "./LogoChipCode/LogoChipCode";
+import {card} from "../actions";
+import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+import InputMask from 'react-input-mask';
+
 
 export const Profile = () => {
+  const [cardNumber, setCardNumber] = useState('')
+  // const [selectedDate, handleDateChange] = useState(new Date());
+
+
   const onSubmitProfile = (e) => {
-      e.preventDefault()
-      const {name, numberCard, date, cvc} = e.target
-      console.log(name.value, numberCard.value, date.value, cvc.value);
-      // authenticate(name.value, numberCard.value, date.value, cvc.value)
+    e.preventDefault()
+    const {name, cardNumber, date, cvc} = e.target
+    const token = "AUTH_TOKEN"
+    card(name.value, cardNumber.value, date.value, cvc.value, token)
   }
   return (
     <Box display='flex' justifyContent='center' alignItems="center" paddingTop='10rem'>
@@ -39,31 +49,38 @@ export const Profile = () => {
                     color="primary"
                     required
                   />
+                  <InputMask mask="9999 9999 9999 9999" value={cardNumber}
+                             onChange={e => setCardNumber(e.target.value)} id="cardNumber"
+                             name="cardNumber"
+                             data-testid='cardNumber'
+                             label='Номер карты'>
+                    {(inputProps) => <TextField {...inputProps} type="tel"/>}
+                  </InputMask>
 
-                  <TextField
-                    id="numberCard"
-                    data-testid='numberCard'
-                    label='Номер карты'
-                    type="text"
-                    name="numberCard"
-                    margin="normal"
-                    fullWidth
-                    color="primary"
-                    required
-                  />
                   <Box display='flex'>
-                    <TextField
-                      id="date"
-                      data-testid='date'
-                      label='MM/YY'
-                      type="date"
-                      name="date"
-                      margin="normal"
-                      fullWidth
-                      color="primary"
-                      required
-                      style={{paddingRight: "35px"}}
-                    />
+                    {/*<TextField*/}
+                    {/*  id="date"*/}
+                    {/*  data-testid='date'*/}
+                    {/*  label='MM/YY'*/}
+                    {/*  type="date"*/}
+                    {/*  name="date"*/}
+                    {/*  margin="normal"*/}
+                    {/*  fullWidth*/}
+                    {/*  color="primary"*/}
+                    {/*  required*/}
+                    {/*  style={{paddingRight: "35px"}}*/}
+                    {/*/>*/}
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <DatePicker
+                        views={["year", "month"]}
+                        label='MM/YY'
+                        id="date"
+                        data-testid='date'
+                        name="date"
+                        // value={selectedDate}
+                        // onChange={e => handleDateChange(e.target.value)}
+                      />
+                    </MuiPickersUtilsProvider>
                     <TextField
                       id="cvc"
                       data-testid='cvc'
@@ -89,12 +106,12 @@ export const Profile = () => {
                        }}>
                   <Box display='flex' justifyItems='row' justifyContent='space-between'>
                     <LogoForCard/>
-                    <Typography variant='body1'>Date</Typography>
+                    <Typography variant='body1'>selectedDate</Typography>
                   </Box>
                   <Typography variant='body1' style={{
                     fontSize: "22px",
                     lineHeight: "1.2"
-                  }}>0000 0000 0000 0000</Typography>
+                  }}>{cardNumber}</Typography>
                   <Box display='flex' justifyItems='row' justifyContent='space-between'>
                     <LogoChipCode/>
                     <img width="45px"
