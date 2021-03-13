@@ -1,32 +1,15 @@
 import React from 'react'
-import {App} from "./App";
+import {AppWithAuth} from "./App";
 import { render } from '@testing-library/react';
 // import AuthProvider from './AuthContext';
 
-jest.mock('./App', () => ({App: () => <div>App component</div>}))
+jest.mock('./App', () => ({AppWithAuth: () => <div>App component</div>}))
 
-describe('App', () => {
+describe('AppWithAuth', () => {
   it('renders correctly', () => {
-    const {container} = render(<App/>)
+    const {container} = render(<AppWithAuth/>)
     expect(container.innerHTML).toMatch('App component')
   })
 
 })
 
-
-
-// describe('App with use Context', () =>{
-//   it('Test to check name from global context', () => {
-//     const globalState = {
-//       isLoggedIn: false
-//     };
-//
-//     const {container} = render(
-//       <AuthProvider value={globalState}>
-//         <App/>
-//       </AuthProvider>
-//     );
-//     const name = getByText(container, 'Login')
-//     expect(name).toBeInTheDocument();
-//   })
-// })

@@ -2,19 +2,17 @@ import React from 'react'
 import {LoginModal} from "./LoginModal/LoginModal";
 import {BasePage} from "../helpers/BasePage";
 import {connect} from "react-redux";
-import {authenticate, logIn} from "../actions";
+import {authenticate} from "../actions";
 import {useHistory} from "react-router";
 
-export const Login = ({authenticate, logIn}) => {
+export const Login = ({authenticate}) => {
   const history = useHistory()
 
-  const onSubmitLogin = (e) => {
+  const onSubmitLogin = async (e) => {
     e.preventDefault()
     const {email, password} = e.target
-    authenticate(email.value, password.value)
-    // logIn()
+    await authenticate(email.value, password.value)
     history.push('/maps')
-
   }
   return (
     <BasePage>
@@ -25,5 +23,5 @@ export const Login = ({authenticate, logIn}) => {
 
 export const LoginWithAuth = connect(
   (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  {authenticate, logIn}
+  {authenticate}
 )(Login)

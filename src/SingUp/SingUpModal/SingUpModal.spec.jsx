@@ -2,16 +2,16 @@ import React from 'react'
 import {render} from '@testing-library/react'
 import {SingUpModal} from "./SingUpModal";
 
-jest.mock('./AuthModal', () => ({AuthModal: () => <div>AuthModal component</div>}))
+jest.mock('./SingUpModal', () => ({SingUpModal: () => <div>SingUpModal component</div>}))
 
-describe('AuthModal', () => {
+describe('SingUpModal', () => {
   it('render correctly', () => {
     const navigateTo = () =>{
-      return 'login'
+      return '/maps'
     }
     const {container} = render(<SingUpModal navigateTo={navigateTo}/>)
 
-    expect(container.innerHTML).toMatch('AuthModal component')
+    expect(container.innerHTML).toMatch('SingUpModal component')
   })
 
 })

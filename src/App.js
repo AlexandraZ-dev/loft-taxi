@@ -1,14 +1,13 @@
 import React from 'react';
-import {Profile} from './Profile/Profile'
+import {ProfileWithAuth} from './Profile/Profile'
 import {Maps} from "./Maps/Maps";
 import {LoginWithAuth} from "./Login/Login";
-import { HeaderWithAuth} from "./Header/Header";
+import {HeaderWithAuth} from "./Header/Header";
 import {SingUp} from "./SingUp/SingUp";
 import {Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 const App = ({isLoggedIn}) => {
-  console.log(isLoggedIn);
   return (
     <>
       {isLoggedIn && <HeaderWithAuth/>}
@@ -16,12 +15,13 @@ const App = ({isLoggedIn}) => {
         <Switch>
           <Route exact path="/" component={LoginWithAuth}/>
           <Route path="/singup" component={SingUp}/>
-          {!isLoggedIn ?
-            <Redirect to="/"/> :
+          {isLoggedIn ?
             (<>
               <Route path="/maps" component={Maps}/>
-              <Route path="/profile" component={Profile}/>
-            </>)}
+              <Route path="/profile" component={ProfileWithAuth}/>
+            </>)
+            : <Redirect to="/"/>
+          }
         </Switch>
       </main>
     </>)

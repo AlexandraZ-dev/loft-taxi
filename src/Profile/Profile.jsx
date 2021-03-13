@@ -1,24 +1,29 @@
 import React, {useState} from 'react'
-import {Box, Button, Paper, TextField, Typography} from "@material-ui/core";
-import MaterialInput from '@material-ui/core/Input';
+import { Box, Button, Paper, TextField, Typography} from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
 import {LogoForCard} from "./LogoForCard/LogoForCard";
 import {LogoChipCode} from "./LogoChipCode/LogoChipCode";
-import {card} from "../actions";
-import {DatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import { card} from "../actions";
 import InputMask from 'react-input-mask';
+import moment from "moment";
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
+import {connect} from "react-redux";
 
 
-export const Profile = () => {
+export const Profile = ({card}) => {
   const [cardNumber, setCardNumber] = useState('')
-  // const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const token = localStorage.token;
 
-
-  const onSubmitProfile = (e) => {
+  const onSubmitProfile = async (e) => {
     e.preventDefault()
-    const {name, cardNumber, date, cvc} = e.target
-    const token = "AUTH_TOKEN"
-    card(name.value, cardNumber.value, date.value, cvc.value, token)
+    const {name, cardNumber, cvc} = e.target
+    const date = moment(selectedDate).format('MM/YYYY')
+    await card(name.value, cardNumber.value, date, cvc.value, token)
+    return <Alert severity="success">Data saved!</Alert>
+
   }
   return (
     <Box display='flex' justifyContent='center' alignItems="center" paddingTop='10rem'>
@@ -58,27 +63,18 @@ export const Profile = () => {
                   </InputMask>
 
                   <Box display='flex'>
-                    {/*<TextField*/}
-                    {/*  id="date"*/}
-                    {/*  data-testid='date'*/}
-                    {/*  label='MM/YY'*/}
-                    {/*  type="date"*/}
-                    {/*  name="date"*/}
-                    {/*  margin="normal"*/}
-                    {/*  fullWidth*/}
-                    {/*  color="primary"*/}
-                    {/*  required*/}
-                    {/*  style={{paddingRight: "35px"}}*/}
-                    {/*/>*/}
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <DatePicker
-                        views={["year", "month"]}
-                        label='MM/YY'
-                        id="date"
+                      <KeyboardDatePicker
+                        margin="normal"
+                        id="date-picker-dialog"
                         data-testid='date'
-                        name="date"
-                        // value={selectedDate}
-                        // onChange={e => handleDateChange(e.target.value)}
+                        label='MM/YY'
+                        format="MM/yyyy"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                          'aria-label': 'change date',
+                        }}
                       />
                     </MuiPickersUtilsProvider>
                     <TextField
@@ -106,7 +102,7 @@ export const Profile = () => {
                        }}>
                   <Box display='flex' justifyItems='row' justifyContent='space-between'>
                     <LogoForCard/>
-                    <Typography variant='body1'>selectedDate</Typography>
+                    <Typography variant='body1'>{moment(selectedDate).format('MM/YY')}</Typography>
                   </Box>
                   <Typography variant='body1' style={{
                     fontSize: "22px",
@@ -130,7 +126,6 @@ export const Profile = () => {
                           fontSize: "1.3rem",
                           width: "350px",
                         }}
-                        href='/maps'
                 >Сохранить</Button>
               </div>
 
@@ -141,3 +136,8 @@ export const Profile = () => {
     </Box>
   )
 }
+
+export const ProfileWithAuth = connect(
+  null,
+  {card}
+)(Profile)
