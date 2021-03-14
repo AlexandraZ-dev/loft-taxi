@@ -1,4 +1,4 @@
-import {LOG_OUT, LOG_IN} from "../actions";
+import {LOG_OUT, LOG_IN, SAVE} from "../actions";
 
 const initialState = {
   isLoggedIn: false,
@@ -12,7 +12,7 @@ export const auth = (state = initialState, action) => {
     case LOG_OUT:
       return {isLoggedIn: false}
     case SAVE:
-      return {isLoggedIn: false}
+      return {isSaved: true}
     default:
       return state
   }

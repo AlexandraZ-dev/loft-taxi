@@ -8,6 +8,7 @@ import {Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 const App = ({isLoggedIn}) => {
+  console.log(isLoggedIn);
   return (
     <>
       {isLoggedIn && <HeaderWithAuth/>}

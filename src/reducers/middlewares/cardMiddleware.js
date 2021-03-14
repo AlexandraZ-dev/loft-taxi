@@ -1,4 +1,4 @@
-import {SAVE, PROFILE} from "../../actions";
+import { PROFILE, SAVE} from "../../actions";
 import {serverCard} from "../../api";
 
 export const cardMiddleware = (store) => (next) => async (action) => {
