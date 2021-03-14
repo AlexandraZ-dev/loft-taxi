@@ -51,9 +51,9 @@ export const SingUpForm = () => {
         color="primary"
         required
       />
-      <Button fullWidth={true} variant='contained' color='primary' data-testid='submitButton'
+      <Button fullWidth={true} variant='contained' color='primary'
               style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}}
-      ><Link to='/maps'>Зарегистрироваться</Link></Button>
+      ><Link to='/maps' data-testid='submitButton'>Зарегистрироваться</Link></Button>
     </form>
 
   )

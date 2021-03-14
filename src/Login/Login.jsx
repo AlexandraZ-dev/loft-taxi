@@ -1,9 +1,11 @@
 import React from 'react'
-import {LoginModal} from "./LoginModal/LoginModal";
 import {BasePage} from "../helpers/BasePage";
 import {connect} from "react-redux";
 import {authenticate} from "../actions";
 import {useHistory} from "react-router";
+import {Container, Typography} from "@material-ui/core";
+import {LoginForm} from "./LoginForm/LoginForm";
+import {ButtonsToRedirect} from "../helpers/ButtonsToRedirect";
 
 export const Login = ({authenticate}) => {
   const history = useHistory()
@@ -16,7 +18,19 @@ export const Login = ({authenticate}) => {
   }
   return (
     <BasePage>
-      <LoginModal onSubmit={onSubmitLogin}/>
+      <Container style={{
+        display: "flex",
+        padding: "0 102px 0 98px",
+        alignItems: "center",
+        flexDirection: "column"
+      }}>
+        <Typography data-testid='logInText' variant="h4" gutterBottom>
+          Войти в кабинет
+        </Typography>
+        <LoginForm onSubmit={onSubmitLogin}/>
+      </Container>
+      <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={'/singUp'} buttonText={'Зарегистрируйтесь'}/>
+
     </BasePage>
   )
 }

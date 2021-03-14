@@ -6,14 +6,14 @@ import {Link} from "react-router-dom";
 export const ButtonsToRedirect = ({buttonText, tittle, navigateTo}) => {
   return (
     <div style={{display: "block", flexDirection: 'column', justifyContent: 'flex-start', paddingLeft: "98px"}}>
-      <Typography variant='body1'>{tittle}</Typography>
+      <Typography data-testid='title' variant='body1'>{tittle}</Typography>
       <Button
         style={{
           textDecoration: "none",
           color: "rgb(253, 191, 90)"
         }}
       >
-        <Link to={navigateTo}>{buttonText}</Link>
+        <Link to={navigateTo} data-testid='buttonText'>{buttonText}</Link>
       </Button>
     </div>
   )

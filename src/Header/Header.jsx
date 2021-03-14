@@ -34,17 +34,14 @@ export const Header = ({logOut}) => {
         >
           <Logo/>
           <Toolbar disableGutters={true}>
-            <Button data-testid='navigateMaps' color="inherit" ><Link to='/maps'>Maps</Link>
+            <Button  color="inherit" ><Link data-testid='navigateMaps' to='/maps'>Maps</Link>
             </Button>
 
-            <Button data-testid='navigateProfile' color="inherit" ><Link to='/profile'>Profile</Link>
+            <Button  color="inherit" ><Link data-testid='navigateProfile' to='/profile'>Profile</Link>
             </Button>
 
-            {/*<Button data-testid='navigateLoginOut' color="inherit"*/}
-            {/*        onClick={logOut}*/}
             <Link to='/' data-testid='navigateLoginOut' color="inherit"
                    onClick={logOut}>LOG OUT</Link>
-          {/*</Button>*/}
           </Toolbar>
 
         </Grid>

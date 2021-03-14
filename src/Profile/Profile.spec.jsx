@@ -1,27 +1,25 @@
 import React from 'react'
-import {render, screen, fireEvent} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import { Profile } from './Profile';
+import {Provider} from "react-redux";
+import configureMockStore from 'redux-mock-store';
+
+const mockStore = configureMockStore();
 
 describe('Profile', () => {
-  it('render inputs correctly', () => {
-    const navigateTo = jest.fn(e => e.preventDefault);
-    render(<Profile navigateTo={navigateTo}/>)
+  let store;
+  beforeEach(() => {
+    store = mockStore({
+      isSaved: false
+    });
+  });
+  it('render elements correctly', () => {
+
+    render(<Provider store={store}><Profile/></Provider>)
     
-    expect(screen.getByTestId('name')).toContainElement(screen.getByText('Имя владельца'))
-    expect(screen.getByTestId('cardNumber')).toContainElement(screen.getByText('Номер карты'))
-    expect(screen.getByTestId('date')).toContainElement(screen.getByText('MM/YY'))
-    expect(screen.getByTestId('cvc')).toContainElement(screen.getByText('CVC'))
-    expect(screen.getByTestId('submitButton')).toContainElement(screen.getByText('Сохранить'))
+    expect(screen.getByTestId('profile')).toContainElement(screen.getByText('Профиль'))
+    expect(screen.getByTestId('add-data')).toContainElement(screen.getByText('Введите платежные данные'))
   })
 
-  it('button click', ()=>{
-    const onSubmit = jest.fn(e => e.preventDefault);
-    render(<Profile navigateTo={onSubmit}/>)
-    const button = screen.getByText("Сохранить");
-
-    fireEvent.click(button)
-    expect(onSubmit).toHaveBeenCalled();
-
-  })
 })
 

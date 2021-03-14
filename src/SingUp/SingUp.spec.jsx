@@ -1,13 +1,17 @@
 import React from 'react'
-import {render} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import {SingUp} from "./SingUp";
+import {Router} from "react-router-dom";
+import {createMemoryHistory} from "history";
 
-jest.mock('./SingUp', () => ({SingUp: () => <div>SingUp component</div>}))
-
-describe('Auth', () => {
+const history = createMemoryHistory()
+describe('SingUp', () => {
   it('renders correctly', () => {
-    const {container} = render(<SingUp/>)
-    expect(container.innerHTML).toMatch('SingUp component')
+     render(<Router history={history}><SingUp/></Router>)
+    expect(screen.getByTestId('auth')).toContainElement(screen.getByText('Регистрация'))
+    expect(screen.getByTestId('title')).toContainElement(screen.getByText('Уже зарегистрован?'))
+    expect(screen.getByTestId('buttonText')).toContainElement(screen.getByText('Войти'))
+
   })
 })
 
