@@ -7,8 +7,8 @@ import {SingUp} from "./SingUp/SingUp";
 import {Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
-const App = ({isLoggedIn}) => {
-  console.log(isLoggedIn);
+const App = ({isLoggedIn, isSaved}) => {
+  console.log(isSaved);
   return (
     <>
       {isLoggedIn && <HeaderWithAuth/>}
@@ -29,7 +29,7 @@ const App = ({isLoggedIn}) => {
 }
 
 export const AppWithAuth = connect(
-  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  (state) => ({isLoggedIn: state.auth.isLoggedIn, isSaved: state.profile.isSaved}),
 )(App)
 
 

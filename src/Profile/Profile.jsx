@@ -6,7 +6,6 @@ import {ProfileSaved} from "./ProfileSaved/ProfileSaved";
 
 
 export const Profile = ({isSaved}) => {
-  console.log(isSaved);
   return (
     <Box display='flex' justifyContent='center' alignItems="center" paddingTop='10rem'>
       <Paper elevation={2} variant="outlined" square={false} style={{
@@ -34,5 +33,5 @@ export const Profile = ({isSaved}) => {
 }
 
 export const ProfileWithAuth = connect(
-  (state) => ({isSaved: state.auth.isSaved}),
+  (state) => ({isSaved: state.profile.isSaved}),
 )(Profile)
