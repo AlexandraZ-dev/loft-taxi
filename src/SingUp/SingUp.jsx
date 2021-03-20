@@ -1,18 +1,26 @@
 import React from 'react'
-import {SingUpModal} from "./SingUpModal/SingUpModal";
-import PropTypes from "prop-types";
 import {BasePage} from "../helpers/BasePage";
+import {Container, Typography} from "@material-ui/core";
+import {SingUpForm} from "./SingUpForm/SingUpForm";
+import {ButtonsToRedirect} from "../helpers/ButtonsToRedirect";
 
-export const SingUp = ({navigateTo, navigateToWhenIsLoggedOut}) => {
+export const SingUp = () => {
   return (
     <BasePage>
-      <SingUpModal navigateTo={navigateTo} navigateToWhenIsLoggedOut={navigateToWhenIsLoggedOut}/>
+      <Container style={{
+        display: "flex",
+        padding: "0 102px 0 98px",
+        alignItems: "center",
+        flexDirection: "column"
+      }}>
+        <Typography data-testid='auth' variant="h4" gutterBottom>
+          Регистрация
+        </Typography>
+        <SingUpForm />
+      </Container>
+      <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={'/'} buttonText={'Войти'} />
     </BasePage>
 
   )
 }
 
-SingUp.propTypes = {
-  navigateToWhenIsLoggedOut: PropTypes.func.isRequired,
-  navigateTo: PropTypes.func.isRequired,
-}

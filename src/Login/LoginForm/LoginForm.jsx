@@ -5,7 +5,7 @@ import {
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-export const LoginForm = ({navigateTo, onSubmit}) => {
+export const LoginForm = ({onSubmit}) => {
   return (
 
     <form style={{marginBottom: '24px'}} onSubmit={onSubmit}>
@@ -13,7 +13,7 @@ export const LoginForm = ({navigateTo, onSubmit}) => {
         id="email"
         data-testid='email'
         label='Имя пользователя'
-        type="text"
+        type="email"
         name="email"
         margin="normal"
         fullWidth
@@ -33,13 +33,12 @@ export const LoginForm = ({navigateTo, onSubmit}) => {
       />
       <Button type='submit' data-testid='submitButton' fullWidth={true} variant='contained' color='primary'
               style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}}
-              onClick={() => navigateTo('maps')}>Войти</Button>
+      >Войти</Button>
     </form>
 
   )
 }
 
 LoginForm.propTypes = {
-  navigateTo: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 }

@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import {App} from "./App";
-import {AuthProvider} from "./AuthContext";
+import {AppWithAuth} from "./App";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import {store } from './store'
+import {MuiPickersUtilsProvider} from "@material-ui/pickers";
+import DateFnsUtils from '@date-io/date-fns';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <App/>
-    </AuthProvider>
+    <BrowserRouter>
+
+      <Provider store={store}>
+        <AppWithAuth/>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

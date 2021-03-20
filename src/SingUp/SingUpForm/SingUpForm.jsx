@@ -1,8 +1,8 @@
 import React from 'react'
 import {Box, Button, TextField} from "@material-ui/core";
-import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
-export const SingUpForm = ({navigateTo}) => {
+export const SingUpForm = () => {
   return (
 
     <form style={{marginBottom: '24px'}} data-testid="form">
@@ -51,14 +51,11 @@ export const SingUpForm = ({navigateTo}) => {
         color="primary"
         required
       />
-      <Button fullWidth={true} variant='contained' color='primary' data-testid='submitButton'
+      <Button fullWidth={true} variant='contained' color='primary'
               style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}}
-              onClick={() => navigateTo('maps')}>Зарегистрироваться</Button>
+      ><Link to='/maps' data-testid='submitButton'>Зарегистрироваться</Link></Button>
     </form>
 
   )
 }
 
-SingUpForm.propTypes = {
-  navigateTo: PropTypes.func.isRequired,
-}

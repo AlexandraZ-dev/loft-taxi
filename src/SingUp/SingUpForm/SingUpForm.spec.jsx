@@ -1,14 +1,14 @@
 import React from 'react'
-import {render, screen, fireEvent} from '@testing-library/react'
-import {SingUpForm} from "./AuthForm";
+import {render, screen} from '@testing-library/react'
+import {SingUpForm} from "./SingUpForm";
+import {Router} from "react-router-dom";
+import {createMemoryHistory} from "history";
+const history = createMemoryHistory()
 
-describe('AuthForm', () => {
+describe('SingUpForm', () => {
   it('render inputs correctly', () => {
-    const navigateTo = () =>{
-      return 'login'
-    }
-    render(<SingUpForm navigateTo={navigateTo}/>)
-    
+    render(<Router history={history}><SingUpForm/></Router>)
+
     expect(screen.getByTestId('email')).toContainElement(screen.getByText('Адрес электронной почты'))
     expect(screen.getByTestId('name')).toContainElement(screen.getByText('Имя'))
     expect(screen.getByTestId('lastName')).toContainElement(screen.getByText('Фамилия'))
@@ -16,14 +16,6 @@ describe('AuthForm', () => {
     expect(screen.getByTestId('submitButton')).toContainElement(screen.getByText('Зарегистрироваться'))
   })
 
-  it('button click', ()=>{
-    const onSubmit = jest.fn(e => e.preventDefault);
-    render(<SingUpForm navigateTo={onSubmit}/>)
-    const button = screen.getByText("Зарегистрироваться");
 
-    fireEvent.click(button)
-    expect(onSubmit).toHaveBeenCalled();
-
-  })
 })
 
