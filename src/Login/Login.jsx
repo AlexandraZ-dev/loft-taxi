@@ -14,7 +14,9 @@ export const Login = ({authenticate}) => {
     e.preventDefault()
     const {email, password} = e.target
     await authenticate(email.value, password.value)
+    console.log(3)
     history.push('/maps')
+    console.log(4)
   }
   return (
     <BasePage>
