@@ -2,7 +2,7 @@ import React from 'react'
 import {Box, Paper, Typography} from "@material-ui/core";
 import {connect} from "react-redux";
 import {ProfileFormWithAuth} from "./ProfileForm/ProfileForm";
-import {ProfileSaved} from "./ProfileSaved/ProfileSaved";
+import {ProfileSavedWithAuth} from "./ProfileSaved/ProfileSaved";
 
 
 export const Profile = ({isSaved}) => {
@@ -23,7 +23,7 @@ export const Profile = ({isSaved}) => {
           <Box padding='40px 0'>
             {!isSaved
               ? <ProfileFormWithAuth/>
-              : <ProfileSaved/>
+              : <ProfileSavedWithAuth/>
             }
           </Box>
         </Box>

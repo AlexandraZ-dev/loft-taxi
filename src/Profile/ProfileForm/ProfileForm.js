@@ -16,11 +16,11 @@ export const ProfileForm = ({card}) => {
   const [selectedDate, handleDateChange] = useState(new Date());
   const token = localStorage.token;
 
-  const onSubmitProfile = async (e) => {
+  const onSubmitProfile = (e) => {
     e.preventDefault()
     const {name, cardNumber, cvc} = e.target
     const date = moment(selectedDate).format('MM/YYYY')
-    await card(name.value, cardNumber.value, date, cvc.value, token)
+    card(name.value, cardNumber.value, date, cvc.value, token)
   }
   return (
     <form onSubmit={onSubmitProfile}>

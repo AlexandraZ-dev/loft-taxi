@@ -1,30 +1,12 @@
-import {serverLogin} from "../api";
-import {call, all, takeEvery, put, fork} from "@redux-saga/core/effects";
-import {AUTHENTICATE, logIn} from "../actions";
-
-
-export  const auth = function*(action) {
-  try{
-    const {email, password} = action.payload
-    const data = yield call(serverLogin, email, password)
-    console.log(data);
-    if (data) {
-      localStorage.setItem("token", data.token)
-      yield  put(logIn())
-
-    }
-  } catch (e) {
-    console.log(e)
-  }
-
-}
-
-export const authSaga = function*() {
-  yield takeEvery(AUTHENTICATE, auth);
-};
+import {call, all} from "@redux-saga/core/effects";
+import {paymentSaga} from "./paymentSaga";
+import {authorizationSaga} from "./authorizationSaga";
+import {registrationSaga} from "./registrationSaga";
 
 export default function* rootSaga() {
   yield all([
-    fork(authSaga)
+    call(authorizationSaga),
+    call(paymentSaga),
+    call(registrationSaga),
   ]);
 }

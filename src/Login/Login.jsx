@@ -2,20 +2,21 @@ import React from 'react'
 import {BasePage} from "../helpers/BasePage";
 import {connect} from "react-redux";
 import {authenticate} from "../actions";
-import {useHistory} from "react-router";
 import {Container, Typography} from "@material-ui/core";
 import {LoginForm} from "./LoginForm/LoginForm";
 import {ButtonsToRedirect} from "../helpers/ButtonsToRedirect";
+import {Redirect} from "react-router-dom";
 
-export const Login = ({authenticate}) => {
-  const history = useHistory()
+export const Login = ({authenticate, isLoggedIn}) => {
 
-  const onSubmitLogin = async (e) => {
+  const onSubmitLogin = (e) => {
     e.preventDefault()
     const {email, password} = e.target
-    await authenticate(email.value, password.value)
+    authenticate(email.value, password.value)
     console.log(3)
-    history.push('/maps')
+    if (isLoggedIn) {
+      return <Redirect to='/maps' />
+    }
     console.log(4)
   }
   return (

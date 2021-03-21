@@ -20,4 +20,16 @@ export const serverCard = async (cardNumber, expiryDate, cardName, cvc, token) =
   ).then(res => res.json())
 }
 
+export const serverRegister = async (email, password, name, surname) => {
+  return fetch('https://loft-taxi.glitch.me/register',
+    {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ email, password, name, surname })
+    }
+  ).then(res => res.json())
+}
+
+
+
 

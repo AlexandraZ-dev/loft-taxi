@@ -3,7 +3,7 @@ import {ProfileWithAuth} from './Profile/Profile'
 import {Maps} from "./Maps/Maps";
 import {LoginWithAuth} from "./Login/Login";
 import {HeaderWithAuth} from "./Header/Header";
-import {SingUp} from "./SingUp/SingUp";
+import {SingUpWithAuth} from "./SingUp/SingUp";
 import {Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -15,7 +15,7 @@ const App = ({isLoggedIn, isSaved}) => {
       <main>
         <Switch>
           <Route exact path="/" component={LoginWithAuth}/>
-          <Route path="/singup" component={SingUp}/>
+          <Route path="/singup" component={SingUpWithAuth}/>
           {isLoggedIn ?
             (<>
               <Route path="/maps" component={Maps}/>

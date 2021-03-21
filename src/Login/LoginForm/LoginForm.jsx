@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 
 export const LoginForm = ({onSubmit}) => {
   return (
-
     <form style={{marginBottom: '24px'}} onSubmit={onSubmit}>
       <TextField
         id="email"
