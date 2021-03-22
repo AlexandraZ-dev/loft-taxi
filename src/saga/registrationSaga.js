@@ -1,6 +1,6 @@
 import {serverRegister} from "../api";
 import {call,  put,  takeEvery} from "@redux-saga/core/effects";
-import {REGISTRATION, logIn} from "../actions";
+import {REGISTRATION, logIn, address} from "../actions";
 
 export const register = function*(action) {
   try{
@@ -9,6 +9,7 @@ export const register = function*(action) {
     if (data) {
       localStorage.setItem("token", data.token)
       yield put(logIn())
+      yield put(address())
     }
   } catch (e) {
     console.log(e)

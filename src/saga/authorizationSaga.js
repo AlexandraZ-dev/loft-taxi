@@ -1,6 +1,6 @@
 import {serverLogin} from "../api";
 import {call,  put,  takeEvery} from "@redux-saga/core/effects";
-import {AUTHENTICATE, logIn} from "../actions";
+import {address, AUTHENTICATE, logIn} from "../actions";
 
 export  const auth = function*(action) {
   try{
@@ -9,6 +9,7 @@ export  const auth = function*(action) {
     if (data) {
       localStorage.setItem("token", data.token)
       yield put(logIn())
+      yield put(address())
     }
   } catch (e) {
     console.log(e)

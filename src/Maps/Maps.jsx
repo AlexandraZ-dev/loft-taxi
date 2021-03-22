@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './Maps.css';
+import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from "@material-ui/core";
+import {TaxiOrderFormWithAuth} from "./TaxiOrderForm";
 
 mapboxgl.accessToken =
   'pk.eyJ1Ijoic2FzaGEwNDA4IiwiYSI6ImNrbGpvYzB2ZDF1MWkybnByZWVzbDhnc20ifQ.P2w22iyIHtnK63NQcsyphg';
@@ -50,7 +52,9 @@ export const Maps = () => {
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
       </div>
-      <div className='map-container' ref={mapContainerRef} />
+      <div className='map-container' ref={mapContainerRef} >
+        <TaxiOrderFormWithAuth />
+      </div>
     </div>
   );
 };

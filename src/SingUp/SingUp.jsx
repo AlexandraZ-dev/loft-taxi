@@ -10,14 +10,11 @@ import { register} from "../actions";
 export const SingUp = ({register, isLoggedIn}) => {
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(4);
     const {email, password, name, surname} = e.target
     register(email.value, password.value, name.value, surname.value)
-    console.log(3)
-    if (isLoggedIn) {
-      return <Redirect to='/maps' />
-    }
-    console.log(4)
+  }
+  if (isLoggedIn) {
+    return <Redirect to='/maps' />
   }
   return (
     <BasePage>

@@ -5,6 +5,8 @@ export const NOT_SAVE = 'NOT_SAVE'
 export const AUTHENTICATE = 'AUTHENTICATE'
 export const REGISTRATION = 'REGISTRATION'
 export const PROFILE = 'PROFILE'
+export const ADDRESS_LIST = 'ADDRESS_LIST'
+export const ADDRESS_LIST_REQUEST = 'ADDRESS_LIST_REQUEST'
 
 export const logIn = () => ({
   type: LOG_IN
@@ -26,4 +28,10 @@ export const card = (cardNumber, expiryDate, cardName, cvc, token) => ({
 })
 export const register = (email, password, name, surname) => ({
   type: REGISTRATION, payload: {email, password, name, surname}
+})
+export const addressRequest = () => ({
+  type: ADDRESS_LIST_REQUEST
+})
+export const address = (addresses) => ({
+  type: ADDRESS_LIST, payload: {addresses}
 })

@@ -13,11 +13,9 @@ export const Login = ({authenticate, isLoggedIn}) => {
     e.preventDefault()
     const {email, password} = e.target
     authenticate(email.value, password.value)
-    console.log(3)
-    if (isLoggedIn) {
-      return <Redirect to='/maps' />
-    }
-    console.log(4)
+  }
+  if (isLoggedIn) {
+    return <Redirect to='/maps' />
   }
   return (
     <BasePage>
@@ -35,6 +33,7 @@ export const Login = ({authenticate, isLoggedIn}) => {
       <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={'/singUp'} buttonText={'Зарегистрируйтесь'}/>
 
     </BasePage>
+
   )
 }
 
