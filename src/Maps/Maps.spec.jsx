@@ -1,15 +1,18 @@
 import React from 'react'
 import {render} from '@testing-library/react'
 import {Maps} from "./Maps";
+import {Router} from "react-router-dom";
+import {createMemoryHistory} from "history";
 
-jest.mock('./Maps', () => ({Maps: () => <div>Maps component</div>}))
+jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
+  Maps: () => ({})
+}));
 
-describe('Maps', () => {
-  it('render correctly', () => {
-    
-    const {container} = render(<Maps/>)
+it('renders correctly', () => {
+  window.URL.createObjectURL = jest.fn();
+  const history = createMemoryHistory()
 
-    expect(container.innerHTML).toMatch('Maps component')
-  })
+  const {queryByTestId} = render(<Router history={history}><Maps /></Router>);
 
-})
+  expect(queryByTestId("Maps")).toBeTruthy();
+});

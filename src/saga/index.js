@@ -3,6 +3,7 @@ import {paymentSaga} from "./paymentSaga";
 import {authorizationSaga} from "./authorizationSaga";
 import {registrationSaga} from "./registrationSaga";
 import {addressListSaga} from "./addressListSaga";
+import {routeSaga} from "./routeSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     call(paymentSaga),
     call(registrationSaga),
     call(addressListSaga),
+    call(routeSaga),
   ]);
 }

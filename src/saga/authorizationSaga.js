@@ -1,6 +1,6 @@
-import {serverLogin} from "../api";
+import {serverLogin, serverPaymentData} from "../api";
 import {call,  put,  takeEvery} from "@redux-saga/core/effects";
-import {address, AUTHENTICATE, logIn} from "../actions";
+import {addressRequest, AUTHENTICATE, HAVE_PROFILE, logIn} from "../actions";
 
 export  const auth = function*(action) {
   try{
@@ -9,7 +9,14 @@ export  const auth = function*(action) {
     if (data) {
       localStorage.setItem("token", data.token)
       yield put(logIn())
-      yield put(address())
+      const token = localStorage.token
+      const profile = yield call(serverPaymentData, token)
+      if (profile) {
+        yield put({
+          type:HAVE_PROFILE,
+        })
+      }
+      yield put(addressRequest())
     }
   } catch (e) {
     console.log(e)

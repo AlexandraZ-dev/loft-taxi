@@ -1,14 +1,13 @@
 import React from 'react';
 import {ProfileWithAuth} from './Profile/Profile'
-import {Maps} from "./Maps/Maps";
+import {MapsWithAuth} from "./Maps/Maps";
 import {LoginWithAuth} from "./Login/Login";
 import {HeaderWithAuth} from "./Header/Header";
 import {SingUpWithAuth} from "./SingUp/SingUp";
 import {Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
-const App = ({isLoggedIn, isSaved}) => {
-  console.log(isLoggedIn);
+const App = ({isLoggedIn}) => {
   return (
     <>
       {isLoggedIn && <HeaderWithAuth/>}
@@ -18,7 +17,7 @@ const App = ({isLoggedIn, isSaved}) => {
           <Route path="/singup" component={SingUpWithAuth}/>
           {isLoggedIn ?
             (<>
-              <Route path="/maps" component={Maps}/>
+              <Route path="/maps" component={MapsWithAuth}/>
               <Route path="/profile" component={ProfileWithAuth}/>
             </>)
             : <Redirect to="/"/>
@@ -29,7 +28,7 @@ const App = ({isLoggedIn, isSaved}) => {
 }
 
 export const AppWithAuth = connect(
-  (state) => ({isLoggedIn: state.auth.isLoggedIn, isSaved: state.profile.isSaved}),
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
 )(App)
 
 

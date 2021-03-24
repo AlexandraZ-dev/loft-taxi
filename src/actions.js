@@ -1,12 +1,19 @@
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
 export const SAVE = 'SAVE'
+export const PAYMENT = 'PAYMENT'
 export const NOT_SAVE = 'NOT_SAVE'
 export const AUTHENTICATE = 'AUTHENTICATE'
 export const REGISTRATION = 'REGISTRATION'
 export const PROFILE = 'PROFILE'
 export const ADDRESS_LIST = 'ADDRESS_LIST'
 export const ADDRESS_LIST_REQUEST = 'ADDRESS_LIST_REQUEST'
+export const PAYMENT_REQUEST = 'PAYMENT_REQUEST'
+export const NOT_PROFILE = 'NOT_PROFILE'
+export const HAVE_PROFILE = 'HAVE_PROFILE'
+export const GET_ROUTE = 'GET_ROUTE'
+export const ROUTE_LIST = 'ROUTE_LIST'
+
 
 export const logIn = () => ({
   type: LOG_IN
@@ -34,4 +41,16 @@ export const addressRequest = () => ({
 })
 export const address = (addresses) => ({
   type: ADDRESS_LIST, payload: {addresses}
+})
+export const paymentDataRequest = (token) => ({
+  type: PAYMENT_REQUEST, payload: { token}
+})
+export const profileSaved = () => ({
+  type: HAVE_PROFILE
+})
+export const getRoute = (address1, address2) => ({
+  type: GET_ROUTE, payload: {address1, address2}
+})
+export const saveCoordinates = (coordinates) => ({
+  type: ROUTE_LIST, payload: [coordinates]
 })
