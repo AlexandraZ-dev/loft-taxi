@@ -1,11 +1,10 @@
 import React from 'react'
 import {Box, Button, TextField} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const SingUpForm = () => {
+export const SingUpForm = ({onSubmit}) => {
   return (
-
-    <form style={{marginBottom: '24px'}} data-testid="form">
+    <form style={{marginBottom: '24px'}} data-testid="form" onSubmit={onSubmit}>
       <TextField
         id="email"
         data-testid='email'
@@ -30,11 +29,11 @@ export const SingUpForm = () => {
         />
         <Box minWidth='8px'/>
         <TextField
-          id="lastName"
-          data-testid='lastName'
+          id="surname"
+          data-testid='surname'
           label='Фамилия'
           type="text"
-          name="lastName"
+          name="surname"
           margin="normal"
           color="primary"
           required
@@ -51,11 +50,15 @@ export const SingUpForm = () => {
         color="primary"
         required
       />
-      <Button fullWidth={true} variant='contained' color='primary'
-              style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}}
-      ><Link to='/maps' data-testid='submitButton'>Зарегистрироваться</Link></Button>
+      <Button fullWidth={true} variant='contained' color='primary' type='submit'
+              style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}} data-testid='submitButton'
+      >Зарегистрироваться</Button>
     </form>
 
   )
+}
+
+SingUpForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
 
