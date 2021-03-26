@@ -1,12 +1,14 @@
 import React from 'react'
-import {Box, Button, TextField} from "@material-ui/core";
+import {Box, Button} from "@material-ui/core";
 import * as Yup from "yup";
 import {Formik, Form} from "formik";
 import {connect} from "react-redux";
 import {register} from "../../actions";
+import {TextInput} from "../../helpers/Input";
 
 export const SingUpForm = ({register}) => {
   const onSubmit = (values, { setSubmitting }) => {
+    console.log(values);
     register(values.email, values.password, values.name, values.surname)
     setSubmitting(false)
   }
@@ -31,51 +33,34 @@ export const SingUpForm = ({register}) => {
       })}
       onSubmit={onSubmit}
     >
-      <Form style={{marginBottom: '24px'}} data-testid="form" onSubmit={onSubmit}>
-        <TextField
-          id="email"
-          data-testid='email'
+      <Form style={{marginBottom: '24px'}} data-testid="form">
+        <TextInput
           label='Адрес электронной почты'
-          type="email"
           name="email"
-          margin="normal"
-          fullWidth
-          color="primary"
-          required
+          type="email"
+          placeholder='Адрес электронной почты'
         />
+
         <Box display='flex' justifyContent='space-between'>
-          <TextField
-            id="name"
-            data-testid='name'
+          <TextInput
             label='Имя'
-            type="text"
             name="name"
-            margin="normal"
-            color="primary"
-            required
+            type="text"
+            placeholder='Имя'
           />
           <Box minWidth='8px'/>
-          <TextField
-            id="surname"
-            data-testid='surname'
+          <TextInput
             label='Фамилия'
-            type="text"
             name="surname"
-            margin="normal"
-            color="primary"
-            required
+            type="text"
+            placeholder='Фамилия'
           />
         </Box>
-        <TextField
-          id="password"
-          data-testid='password'
+        <TextInput
           label='Пароль'
-          type="password"
           name="password"
-          margin="normal"
-          fullWidth
-          color="primary"
-          required
+          type="password"
+          placeholder='Пароль'
         />
         <Button fullWidth={true} variant='contained' color='primary' type='submit'
                 style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}} data-testid='submitButton'

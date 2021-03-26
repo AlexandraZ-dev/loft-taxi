@@ -5,7 +5,6 @@ import {SingUpFormWithAuth} from "./SingUpForm/SingUpForm";
 import {ButtonsToRedirect} from "../helpers/ButtonsToRedirect";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import { register} from "../actions";
 
 export const SingUp = ({ isLoggedIn}) => {
 
