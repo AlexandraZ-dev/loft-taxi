@@ -10,7 +10,8 @@ describe('TaxiOrderForm', () => {
   let store;
   beforeEach(() => {
     store = mockStore({
-      // isSaved: false
+      addressList: ["Магазин", "Театр", "Кино"],
+      isLoading: false,
     });
   });
   it('render inputs correctly', () => {

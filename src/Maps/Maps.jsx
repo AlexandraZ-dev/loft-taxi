@@ -28,25 +28,13 @@ export const Maps = ({isProfile, coord}) => {
       zoom: zoom
     });
 
-    // Add navigation control (the +/- zoom buttons)
-    // map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-    map.touchPitch.enable(true);
-
-    map.dragPan.enable({
-      linearity: 0.3,
-      // easing: bezier(0, 0, 0.3, 1),
-      maxSpeed: 1400,
-      deceleration: 2500,
-    });
-
     map.on("load", () => {
       if (coord) drawRoute(map, coord);
     });
 
     // Clean up on unmount
     return () => map.remove();
-  }, [coord, lat, lng, mapContainerRef, zoom]);
+  }, [coord, mapContainerRef, zoom]);
 
 
   return (

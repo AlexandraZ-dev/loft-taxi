@@ -45,8 +45,8 @@ export const address = (addresses) => ({
 export const paymentDataRequest = (token) => ({
   type: PAYMENT_REQUEST, payload: { token}
 })
-export const profileSaved = () => ({
-  type: HAVE_PROFILE
+export const profileSaved = (profile) => ({
+  type: HAVE_PROFILE, payload: {profile}
 })
 export const getRoute = (address1, address2) => ({
   type: GET_ROUTE, payload: {address1, address2}

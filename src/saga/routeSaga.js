@@ -6,7 +6,7 @@ export const route = function*(action) {
   try{
     const {address1, address2} = action.payload
     const data = yield call(serverRoute, address1, address2)
-    if (data) {
+    if (data.length > 0) {
       yield put({type: ROUTE_LIST, coord: data})
     }
   } catch (e) {

@@ -1,18 +1,14 @@
 import React from 'react'
 import {BasePage} from "../helpers/BasePage";
 import {Container, Typography} from "@material-ui/core";
-import {SingUpForm} from "./SingUpForm/SingUpForm";
+import {SingUpFormWithAuth} from "./SingUpForm/SingUpForm";
 import {ButtonsToRedirect} from "../helpers/ButtonsToRedirect";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import { register} from "../actions";
 
-export const SingUp = ({register, isLoggedIn}) => {
-  const onSubmit = (e) => {
-    e.preventDefault()
-    const {email, password, name, surname} = e.target
-    register(email.value, password.value, name.value, surname.value)
-  }
+export const SingUp = ({ isLoggedIn}) => {
+
   if (isLoggedIn) {
     return <Redirect to='/maps' />
   }
@@ -27,7 +23,7 @@ export const SingUp = ({register, isLoggedIn}) => {
         <Typography data-testid='auth' variant="h4" gutterBottom>
           Регистрация
         </Typography>
-        <SingUpForm onSubmit={onSubmit}/>
+        <SingUpFormWithAuth/>
       </Container>
       <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={'/'} buttonText={'Войти'} />
     </BasePage>
@@ -37,6 +33,5 @@ export const SingUp = ({register, isLoggedIn}) => {
 
 export const SingUpWithAuth = connect(
   (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  {register}
 )(SingUp)
 

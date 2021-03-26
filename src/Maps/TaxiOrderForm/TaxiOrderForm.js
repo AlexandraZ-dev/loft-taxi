@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import {Button, FormControl, Grid, InputLabel, MenuItem, Select, Typography} from "@material-ui/core";
+import {Button, FormControl, Grid, InputLabel, MenuItem, Typography} from "@material-ui/core";
 import {connect} from "react-redux";
 import {getRoute} from "../../actions";
+import * as Yup from "yup";
+import {Form, Formik, Field} from "formik";
+import {TextField,} from 'formik-material-ui';
 
-export const TaxiOrderForm = ({addressList, isLoading, getRoute}) => {
-    const [addressOne, setAddressOne] = useState('');
-    const [addressTwo, setAddressTwo] = useState('');
+export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess}) => {
     const [orderSuccess, setOrderSuccess] = useState(true)
 
-    const onSubmit = (e) => {
-      e.preventDefault()
-      getRoute(addressOne, addressTwo)
-      setAddressOne('')
-      setAddressTwo('')
+    const onSubmit = (values, {setSubmitting, resetForm}) => {
+      getRoute(values.address1, values.address2)
+      resetForm ()
       setOrderSuccess(false)
+      setSubmitting(false)
     }
 
     if (isLoading) {
@@ -21,52 +21,70 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute}) => {
     }
     return (
       <>
-        {orderSuccess
-          ? (<form onSubmit={onSubmit}>
-            <Grid
-              container
-              direction="column"
-              justify="flex-start"
-              alignItems="flex-start"
-            >
-              <FormControl style={{minWidth: "200px"}}>
-                <InputLabel id="address1" data-testid='address1'>Откуда</InputLabel>
-                <Select
-                  labelId="address1"
-                  id="address1"
-                  defaultValue=""
-                  value={addressOne}
-                  onChange={e => setAddressOne(e.target.value)}
+        {!isOrderSuccess
+          ? (
+            <Formik
+              initialValues={{
+                address1: '',
+                address2: '',
+              }}
+              validationSchema={Yup.object({
+                address1: Yup.string()
+                  .required('Required'),
+                address2: Yup.string()
+                  .required('Required'),
+              })}
+              onSubmit={onSubmit}
+            >{({values, setFieldValue}) => (
+              <Form>
+                <Grid
+                  container
+                  direction="column"
+                  justify="flex-start"
+                  alignItems="flex-start"
                 >
-                  {addressList.map(address => (
-                    addressTwo === address
-                      ? address
-                      : <MenuItem key={address} value={address}>{address}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-
-              <FormControl style={{minWidth: "200px"}}>
-                <InputLabel id="address2" data-testid='address2'>Куда</InputLabel>
-                <Select
-                  labelId="address2"
-                  id="address2"
-                  defaultValue=""
-                  value={addressTwo}
-                  onChange={e => setAddressTwo(e.target.value)}
-                >
-                  {addressList.map(address => (
-                    addressOne === address
-                      ? address
-                      : <MenuItem key={address} value={address}>{address}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <Button type='submit' data-testid='button' disabled={!addressOne && !addressTwo} variant='contained'
-                      color='primary' style={{marginTop: '35px', minWidth: "200px"}}
-              >Вызвать такси</Button>
-            </Grid>
-          </form>)
+                  <Field
+                    type="text"
+                    name="address1"
+                    label="Откуда"
+                    select
+                    margin="normal"
+                    component={TextField}
+                    fullWidth
+                    defaultValue={""}
+                    value={values.address1}
+                  >
+                    {addressList.map(option => (
+                      values.address2 === option
+                        ? option
+                        : <MenuItem key={option} value={option}>{option}</MenuItem>
+                    ))}
+                  </Field>
+                  <Field
+                    type="text"
+                    name="address2"
+                    label="Куда"
+                    select
+                    margin="normal"
+                    component={TextField}
+                    fullWidth
+                    defaultValue={""}
+                    value={values.address2}
+                  >
+                    {addressList.map(option => (
+                      values.address1 === option
+                        ? option
+                        : <MenuItem key={option} value={option}>{option}</MenuItem>
+                    ))}
+                  </Field>
+                  <Button type='submit' data-testid='button' variant='contained'
+                          color='primary' style={{marginTop: '35px', minWidth: "200px"}}
+                  >Вызвать такси</Button>
+                </Grid>
+              </Form>
+            )}
+            </Formik>
+          )
           : <Grid>
             <Typography variant='h4' data-testid='order'>
               Заказ размещён
@@ -74,7 +92,8 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute}) => {
             <Typography variant={"body1"} data-testid='info'>
               Ваше такси уже едет к вам. Прибудет приблизительно через 10 минут.
             </Typography>
-            <Button data-testid='buttonNewOrder' variant='contained' color='primary' onClick={() => setOrderSuccess(true)}
+            <Button data-testid='buttonNewOrder' variant='contained' color='primary'
+                    onClick={() => setOrderSuccess(true)}
                     style={{
                       width: '100%',
                       display: 'inherit',
@@ -93,7 +112,8 @@ export const TaxiOrderFormWithAuth = connect(
   (state) => (
     {
       addressList: state.addressList.addressList,
-      isLoading: state.addressList.isLoading
+      isLoading: state.addressList.isLoading,
+      isOrderSuccess: state.route.isOrderSuccess
     }
   ),
   {
