@@ -12,7 +12,7 @@ export const Login = ({ isLoggedIn}) => {
     return <Redirect to='/maps' />
   }
   return (
-    <BasePage>
+    <BasePage >
       <Container style={{
         display: "flex",
         padding: "0 102px 0 98px",

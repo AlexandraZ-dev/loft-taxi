@@ -17,7 +17,6 @@ export const ProfileForm = ({card, profile}) => {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   const { cardName, cardNumber, cvc, expiryDate} = profile;
-console.log(cardName, cardNumber, cvc, typeof expiryDate)
   const token = localStorage.token;
 
   const onSubmitProfile = (values, {setSubmitting}) => {
@@ -70,6 +69,7 @@ console.log(cardName, cardNumber, cvc, typeof expiryDate)
         } = props;
         return (
           <Form>
+            <Typography variant="body1" data-testid='add-data'>Введите платежные данные</Typography>
             <Box display='flex' justifyItems='row' padding="40px 0">
               <Box marginRight='100px'>
                 <TextInput
@@ -104,13 +104,14 @@ console.log(cardName, cardNumber, cvc, typeof expiryDate)
                     name="cvc"
                     type="text"
                     placeholder='CVC'
+                    value={cvc? cvc: values.cvc}
                   />
                 </Box>
               </Box>
               <Paper elevation={5} variant="outlined" square={false}
                      style={{
                        borderRadius: '10px', width: "347px",
-                       height: "215px",
+                       height: "182px",
                        padding: "18px 28px",
                        boxSizing: "border-box",
                        display: 'flex',

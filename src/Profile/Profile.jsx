@@ -7,7 +7,8 @@ import {ProfileSavedWithAuth} from "./ProfileSaved/ProfileSaved";
 
 export const Profile = ({isSaved}) => {
   return (
-    <Box display='flex' justifyContent='center' alignItems="center" paddingTop='10rem'>
+    <Box display='flex' justifyContent='center' alignItems="center" paddingTop='10rem'
+    >
       <Paper elevation={2} variant="outlined" square={false} style={{
         borderRadius: '10px', padding: "60px 44px"
       }}
@@ -19,13 +20,11 @@ export const Profile = ({isSaved}) => {
           flexDirection='column'>
           <Typography
             variant="h4" data-testid='profile'>Профиль</Typography>
-          <Typography variant="body1" data-testid='add-data'>Введите платежные данные</Typography>
-          <Box padding='40px 0'>
+
             {!isSaved
               ? <ProfileFormWithAuth/>
               : <ProfileSavedWithAuth/>
             }
-          </Box>
         </Box>
       </Paper>
     </Box>

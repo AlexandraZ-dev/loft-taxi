@@ -13,11 +13,9 @@ mapboxgl.accessToken =
 export const Maps = ({isProfile, coord}) => {
   const mapContainerRef = useRef(null);
 
-
   const [lng, setLng] = useState(30.2656504);
   const [lat, setLat] = useState(59.8029126);
   const [zoom, setZoom] = useState(14);
-
 
   // Initialize map when component mounts
   useEffect(() => {
@@ -36,26 +34,25 @@ export const Maps = ({isProfile, coord}) => {
     return () => map.remove();
   }, [coord, mapContainerRef, zoom]);
 
-
   return (
-    <div>
-      <div className='sidebarStyle'>
-        <div>
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-        </div>
-      </div>
-      <div className='map-container' ref={mapContainerRef}>
-        <div>
-          <Paper elevation={1} style={{padding: "44px 60px",
-            marginTop: "48px",
-            marginBottom: "48px", position: "absolute", top: 0,
-            left: "20px"}}>
-        {isProfile
-          ? <TaxiOrderFormWithAuth/>
-          : <FillPaymentDetailsForm/>
-        }
-          </Paper>
-        </div>
+    <div className='map-container' ref={mapContainerRef}>
+      <div>
+        <Paper elevation={1}
+           style={{
+             marginTop: "16px",
+             position: "absolute",
+             marginLeft: '16px',
+             width: "486px",
+             padding: "16px 0",
+             borderRadius: "10px",
+             paddingBottom: "34px",
+             pointerEvents: "all"
+           }}>
+          {isProfile
+            ? <TaxiOrderFormWithAuth/>
+            : <FillPaymentDetailsForm/>
+          }
+        </Paper>
       </div>
     </div>
   );

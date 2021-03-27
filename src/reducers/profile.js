@@ -1,4 +1,4 @@
-import { NOT_SAVE, SAVE, HAVE_PROFILE, NOT_PROFILE} from "../actions";
+import {NOT_SAVE, SAVE, HAVE_PROFILE, NOT_PROFILE, SAVE_PROFILE} from "../actions";
 
 const initialState = {
   isSaved: false,
@@ -20,6 +20,8 @@ export const profile = (state = initialState, action) => {
       return {...state, isSaved: false}
     case HAVE_PROFILE:
       return {...state, isProfile: true, profile: action.profile}
+    case SAVE_PROFILE:
+      return {...state, isProfile: true}
     case NOT_PROFILE:
       return {...state, isProfile: false}
     default:

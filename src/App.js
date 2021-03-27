@@ -6,12 +6,13 @@ import {HeaderWithAuth} from "./Header/Header";
 import {SingUpWithAuth} from "./SingUp/SingUp";
 import {Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import cardImg from './Header/bg-auth.283ac044.jpg'
 
 const App = ({isLoggedIn}) => {
   return (
     <>
       {isLoggedIn && <HeaderWithAuth/>}
-      <main>
+      <main style={{backgroundImage: `url(${cardImg})`, height: "100vh"}}>
         <Switch>
           <Route exact path="/" component={LoginWithAuth}/>
           <Route path="/singup" component={SingUpWithAuth}/>

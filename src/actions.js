@@ -11,8 +11,10 @@ export const ADDRESS_LIST_REQUEST = 'ADDRESS_LIST_REQUEST'
 export const PAYMENT_REQUEST = 'PAYMENT_REQUEST'
 export const NOT_PROFILE = 'NOT_PROFILE'
 export const HAVE_PROFILE = 'HAVE_PROFILE'
+export const SAVE_PROFILE = 'SAVE_PROFILE'
 export const GET_ROUTE = 'GET_ROUTE'
 export const ROUTE_LIST = 'ROUTE_LIST'
+export const NEW_ORDER_TAXI = 'NEW_ORDER_TAXI'
 
 
 export const logIn = () => ({
@@ -45,12 +47,15 @@ export const address = (addresses) => ({
 export const paymentDataRequest = (token) => ({
   type: PAYMENT_REQUEST, payload: { token}
 })
-export const profileSaved = (profile) => ({
+export const haveProfile = (profile) => ({
   type: HAVE_PROFILE, payload: {profile}
+})
+export const profileSaved = () => ({
+  type: SAVE_PROFILE
 })
 export const getRoute = (address1, address2) => ({
   type: GET_ROUTE, payload: {address1, address2}
 })
-export const saveCoordinates = (coordinates) => ({
-  type: ROUTE_LIST, payload: [coordinates]
+export const newOrderTaxi = () => ({
+  type: NEW_ORDER_TAXI
 })
