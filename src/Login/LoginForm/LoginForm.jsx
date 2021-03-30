@@ -44,6 +44,7 @@ export const LoginForm = ({authenticate}) => {
       <Button type='submit' data-testid='submitButton' fullWidth={true} variant='contained' color='primary'
               style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}}
       >Войти</Button>
+
     </Form>
     </Formik>
 

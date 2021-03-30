@@ -14,18 +14,11 @@ export const ProfileSaved = ({notSaved}) => {
       >
         Платёжные данные обновлены. Теперь вы можете заказывать такси.
       </Typography>
-      <Button
-        variant='contained'
-        color='primary'
-        style={{marginTop: '16px', borderRadius: "40px", fontSize: "1.3rem", color: 'black'}}
-        onClick={notSaved}>
-        <NavLink
-          data-testid='link'
-          to='/maps'
-          style={{ color: 'black'}}
-        >
-          Перейти к заказу такси
-        </NavLink>
+      <Button component={NavLink} variant='contained'
+              color='primary'
+              style={{marginTop: '16px', borderRadius: "40px", fontSize: "1.3rem", color: 'black'}}
+              onClick={notSaved} to='/maps'>
+        Перейти к заказу такси
       </Button>
     </>
   )

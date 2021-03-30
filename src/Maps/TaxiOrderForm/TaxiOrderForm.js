@@ -5,9 +5,9 @@ import {getRoute, newOrderTaxi} from "../../actions";
 import * as Yup from "yup";
 import {Form, Formik, Field} from "formik";
 import {TextField,} from 'formik-material-ui';
-import standart from '../cars/standart.4f77edda.jpg'
-import biznes from '../cars/biznes.3d4d1c49.jpg'
-import premium from '../cars/premium.db10d13e.png'
+import standart from './cars/standart.4f77edda.jpg'
+import biznes from './cars/biznes.3d4d1c49.jpg'
+import premium from './cars/premium.db10d13e.png'
 
 export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess, newOrderTaxi}) => {
 
@@ -54,7 +54,6 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                     margin="normal"
                     component={TextField}
                     fullWidth
-                    defaultValue={""}
                     value={values.address1}
                     style={{marginTop: 0}}
                   >
@@ -72,7 +71,6 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                     margin="normal"
                     component={TextField}
                     fullWidth
-                    defaultValue={""}
                     value={values.address2}
                     style={{marginTop: 0}}
                   >
@@ -102,10 +100,11 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                           <Typography variant='caption'>Стоимость</Typography>
                           <Typography variant='h6'>150P</Typography>
                           <CardMedia style={{
-                            backgroundImage: `url(${standart})`, width: "95px",
+                            width: "95px",
                             height: "72px",
                             marginTop: "12px"
-                          }}/>
+                          }} image={standart}
+                          />
                         </CardActionArea>
                       </Card>
                       <Card elevation={4} style={{marginRight: '20px'}}>
@@ -113,11 +112,13 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                           <Typography variant='body1'>Бизнес</Typography>
                           <Typography variant='caption'>Стоимость</Typography>
                           <Typography variant='h6'>250P</Typography>
-                          <CardMedia style={{
-                            backgroundImage: `url(${biznes})`, width: "95px",
-                            height: "72px",
-                            marginTop: "12px"
-                          }}/>
+                          <CardMedia
+                            image={biznes}
+                            style={{
+                              width: "95px",
+                              height: "72px",
+                              marginTop: "12px"
+                            }}/>
                         </CardActionArea>
                       </Card>
                       <Card elevation={4} style={{marginRight: '20px'}}>
@@ -125,8 +126,8 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                           <Typography variant='body1'>Премиум</Typography>
                           <Typography variant='caption'>Стоимость</Typography>
                           <Typography variant='h6'>350P</Typography>
-                          <CardMedia style={{
-                            backgroundImage: `url(${premium})`, width: "95px",
+                          <CardMedia  image={premium} style={{
+                            width: "95px",
                             height: "72px",
                             marginTop: "12px"
                           }}/>
@@ -142,7 +143,7 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                     fontWeight: "400",
                     borderRadius: "40px"
                   }}
-                    fullWidth={true}
+                          fullWidth={true}
                   >Вызвать такси</Button>
                 </Grid>
               </Form>

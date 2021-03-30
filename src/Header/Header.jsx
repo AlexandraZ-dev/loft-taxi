@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppBar, Button, Container, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Logo} from "./Logo/Logo";
-import { NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {logOut} from "../actions";
 
@@ -34,22 +34,19 @@ export const Header = ({logOut}) => {
         >
           <Logo/>
           <Toolbar disableGutters={true}>
-            <Button data-testid='navigateMaps'>
-              <NavLink data-testid='navigateMaps' style={{color:'#ffffff'}} to='/maps' color="inherit" activeStyle={{ color: '#ffc617' }}>
-                Карта
-              </NavLink>
+            <Button component={NavLink} data-testid='navigateMaps' to="/maps" color="inherit"
+                    activeStyle={{color: '#ffc617'}} style={{color: '#ffffff'}}>
+              Карта
             </Button>
 
-            <Button data-testid='navigateProfile'>
-              <NavLink data-testid='navigateProfile' style={{color:'#ffffff'}} to='/profile' color="inherit" activeStyle={{ color: '#ffc617' }}>
-                Профиль
-              </NavLink>
+            <Button component={NavLink} data-testid='navigateProfile' to="/profile" color="inherit"
+                    activeStyle={{color: '#ffc617'}} style={{color: '#ffffff'}}>
+              Профиль
             </Button>
 
-            <Button data-testid='navigateLoginOut' onClick={logOut} >
-              <NavLink data-testid='navigateProfile' style={{color:'#ffffff'}} to='/login' color="inherit" activeStyle={{ color: '#ffc617' }}>
-                Выйти
-              </NavLink>
+            <Button component={NavLink} data-testid='navigateLoginOut' to="/login" color="inherit"
+                    activeStyle={{color: '#ffc617'}} style={{color: '#ffffff'}} onClick={logOut}>
+              Выйти
             </Button>
 
           </Toolbar>
@@ -62,7 +59,9 @@ export const Header = ({logOut}) => {
 
 export const HeaderWithAuth = connect(
   null,
-  {logOut}
+  {
+    logOut
+  }
 )(Header)
 
 
