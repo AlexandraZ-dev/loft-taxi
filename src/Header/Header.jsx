@@ -24,7 +24,7 @@ export const Header = ({logOut}) => {
   const classes = useStyles();
 
   return (
-    <AppBar position="static" className={classes.header}>
+    <AppBar position="fixed" className={classes.header}>
       <Container>
         <Grid
           container

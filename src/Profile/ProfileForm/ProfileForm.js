@@ -16,15 +16,14 @@ import {TextInput} from "../../helpers/Input";
 export const ProfileForm = ({card, profile}) => {
   const [selectedDate, handleDateChange] = useState(new Date());
 
-  const { cardName, cardNumber, cvc, expiryDate} = profile;
+  const {cardName, cardNumber, cvc, expiryDate} = profile;
   const token = localStorage.token;
 
   const onSubmitProfile = (values, {setSubmitting}) => {
     const date = moment(values.date).format('MM/YYYY')
-    card(values.name, values.cardNumber, date, values.cvc, token)
+    card(values.cardNumber.replace(/\s/g, ''), date, values.name, values.cvc, token)
     setSubmitting(false)
   }
-
   const dataPicker = ({field, ...props}) => {
     return (
       <KeyboardDatePicker
@@ -44,10 +43,10 @@ export const ProfileForm = ({card, profile}) => {
   return (
     <Formik
       initialValues={{
-        name: '',
-        cardNumber:  '',
-        date:  new Date(),
-        cvc:  '',
+        name: '' || cardNumber,
+        cardNumber: '' || cardName,
+        date: new Date() || expiryDate,
+        cvc: '' || cvc,
       }}
       validationSchema={Yup.object({
         name: Yup.string()
@@ -67,6 +66,7 @@ export const ProfileForm = ({card, profile}) => {
           values,
           handleChange,
         } = props;
+
         return (
           <Form>
             <Typography variant="body1" data-testid='add-data'>Введите платежные данные</Typography>
@@ -77,16 +77,15 @@ export const ProfileForm = ({card, profile}) => {
                   name="name"
                   type="text"
                   placeholder='Имя владельца'
-                  value={cardNumber? cardNumber : values.name}
                 />
                 <InputMask
                   mask="9999 9999 9999 9999"
-                  value={expiryDate? expiryDate : values.cardNumber}
+                  value={expiryDate ? expiryDate : values.cardNumber}
                   onChange={handleChange}
                   name="cardNumber"
                   label="Номер карты"
                   type="text"
-                  >
+                >
 
                   {(inputProps) =>
                     <TextInput {...inputProps}/>}
@@ -104,7 +103,6 @@ export const ProfileForm = ({card, profile}) => {
                     name="cvc"
                     type="text"
                     placeholder='CVC'
-                    value={cvc? cvc: values.cvc}
                   />
                 </Box>
               </Box>
@@ -125,7 +123,7 @@ export const ProfileForm = ({card, profile}) => {
                 <Typography variant='body1' style={{
                   fontSize: "22px",
                   lineHeight: "1.2"
-                }}>{expiryDate? expiryDate :values.cardNumber}</Typography>
+                }}>{expiryDate ? expiryDate : values.cardNumber}</Typography>
                 <Box display='flex' justifyItems='row' justifyContent='space-between'>
                   <LogoChipCode/>
                   <img width="45px"
