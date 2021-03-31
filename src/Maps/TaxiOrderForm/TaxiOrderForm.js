@@ -103,7 +103,7 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                             width: "95px",
                             height: "72px",
                             marginTop: "12px"
-                          }} image={standart}
+                          }} image={standart} title="Standard car"
                           />
                         </CardActionArea>
                       </Card>
@@ -112,7 +112,7 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                           <Typography variant='body1'>Бизнес</Typography>
                           <Typography variant='caption'>Стоимость</Typography>
                           <Typography variant='h6'>250P</Typography>
-                          <CardMedia
+                          <CardMedia title="Business car"
                             image={biznes}
                             style={{
                               width: "95px",
@@ -126,7 +126,7 @@ export const TaxiOrderForm = ({addressList, isLoading, getRoute, isOrderSuccess,
                           <Typography variant='body1'>Премиум</Typography>
                           <Typography variant='caption'>Стоимость</Typography>
                           <Typography variant='h6'>350P</Typography>
-                          <CardMedia  image={premium} style={{
+                          <CardMedia title="Premium car" image={premium} style={{
                             width: "95px",
                             height: "72px",
                             marginTop: "12px"
