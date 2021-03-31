@@ -21,6 +21,7 @@ export const ProfileForm = ({card, profile}) => {
 
   const onSubmitProfile = (values, {setSubmitting}) => {
     const date = moment(values.date).format('MM/YYYY')
+
     card(values.cardNumber.replace(/\s/g, ''), date, values.name, values.cvc, token)
     setSubmitting(false)
   }
@@ -43,16 +44,15 @@ export const ProfileForm = ({card, profile}) => {
   return (
     <Formik
       initialValues={{
-        name: '' || cardNumber,
-        cardNumber: '' || cardName,
-        date: new Date() || expiryDate,
-        cvc: '' || cvc,
+        name: cardNumber || "",
+        cardNumber: cardName || "",
+        date: "",
+        cvc: cvc || "",
       }}
       validationSchema={Yup.object({
         name: Yup.string()
           .required('Required'),
-        date: Yup.date()
-          .required('Required'),
+        date: Yup.string(),
         cardNumber: Yup.string()
           .min(16, "Not less than 16")
           .required('Required'),
@@ -80,7 +80,6 @@ export const ProfileForm = ({card, profile}) => {
                 />
                 <InputMask
                   mask="9999 9999 9999 9999"
-                  value={expiryDate ? expiryDate : values.cardNumber}
                   onChange={handleChange}
                   name="cardNumber"
                   label="Номер карты"
@@ -118,7 +117,7 @@ export const ProfileForm = ({card, profile}) => {
                      }}>
                 <Box display='flex' justifyItems='row' justifyContent='space-between'>
                   <LogoForCard/>
-                  <Typography variant='body1'>{moment(selectedDate).format('MM/YY')}</Typography>
+                  <Typography variant='body1'>{moment(values.date).format('MM/YY')}</Typography>
                 </Box>
                 <Typography variant='body1' style={{
                   fontSize: "22px",
