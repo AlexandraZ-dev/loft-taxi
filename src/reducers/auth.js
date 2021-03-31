@@ -2,6 +2,7 @@ import {LOG_OUT, LOG_IN} from "../actions";
 
 const initialState = {
   isLoggedIn: false,
+  profile: { name: "", date: "", card: "", cvv: "" }
 }
 
 export const auth = (state = initialState, action) => {

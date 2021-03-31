@@ -1,15 +1,20 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import mapboxgl from 'mapbox-gl';
 import './Maps.css';
+import {TaxiOrderFormWithAuth} from "./TaxiOrderForm/TaxiOrderForm";
+import {connect} from "react-redux";
+import {FillPaymentDetailsForm} from "./FillPaymentDetailsForm/FillPaymentDetailsForm";
+import {Paper} from "@material-ui/core";
+import {drawRoute} from "./DrawRoute/DrawRoute";
 
 mapboxgl.accessToken =
   'pk.eyJ1Ijoic2FzaGEwNDA4IiwiYSI6ImNrbGpvYzB2ZDF1MWkybnByZWVzbDhnc20ifQ.P2w22iyIHtnK63NQcsyphg';
 
-export const Maps = () => {
+export const Maps = ({isProfile, coord}) => {
   const mapContainerRef = useRef(null);
 
-  const [lng, setLng] = useState(49.1221);
-  const [lat, setLat] = useState(55.7887);
+  const [lng, setLng] = useState(30.2656504);
+  const [lat, setLat] = useState(59.8029126);
   const [zoom, setZoom] = useState(14);
 
   // Initialize map when component mounts
@@ -21,36 +26,39 @@ export const Maps = () => {
       zoom: zoom
     });
 
-    // Add navigation control (the +/- zoom buttons)
-    // map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-    map.touchPitch.enable(true);
-
-    map.dragPan.enable({
-      linearity: 0.3,
-      // easing: bezier(0, 0, 0.3, 1),
-      maxSpeed: 1400,
-      deceleration: 2500,
-    });
-
-    map.on('move', () => {
-      setLng(map.getCenter().lng.toFixed(4));
-      setLat(map.getCenter().lat.toFixed(4));
-      setZoom(map.getZoom().toFixed(2));
+    map.on("load", () => {
+      if (coord) drawRoute(map, coord);
     });
 
     // Clean up on unmount
     return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [coord, mapContainerRef, zoom]);
 
   return (
-    <div>
-      <div className='sidebarStyle'>
-        <div>
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-        </div>
+    <div className='map-container' ref={mapContainerRef}>
+      <div>
+        <Paper elevation={1}
+           style={{
+             marginTop: "16px",
+             position: "absolute",
+             marginLeft: '16px',
+             width: "486px",
+             padding: "16px 0",
+             borderRadius: "10px",
+             paddingBottom: "34px",
+             pointerEvents: "all"
+           }}>
+          {isProfile
+            ? <TaxiOrderFormWithAuth/>
+            : <FillPaymentDetailsForm/>
+          }
+        </Paper>
       </div>
-      <div className='map-container' ref={mapContainerRef} />
     </div>
   );
 };
+
+export const MapsWithAuth = connect(
+  (state) => ({isProfile: state.profile.isProfile, coord: state.route.coord}),
+  {}
+)(Maps)

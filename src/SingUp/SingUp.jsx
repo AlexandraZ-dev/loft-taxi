@@ -1,10 +1,16 @@
 import React from 'react'
 import {BasePage} from "../helpers/BasePage";
 import {Container, Typography} from "@material-ui/core";
-import {SingUpForm} from "./SingUpForm/SingUpForm";
+import {SingUpFormWithAuth} from "./SingUpForm/SingUpForm";
 import {ButtonsToRedirect} from "../helpers/ButtonsToRedirect";
+import {Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 
-export const SingUp = () => {
+export const SingUp = ({ isLoggedIn}) => {
+
+  if (isLoggedIn) {
+    return <Redirect to='/maps' />
+  }
   return (
     <BasePage>
       <Container style={{
@@ -16,11 +22,15 @@ export const SingUp = () => {
         <Typography data-testid='auth' variant="h4" gutterBottom>
           Регистрация
         </Typography>
-        <SingUpForm />
+        <SingUpFormWithAuth/>
       </Container>
       <ButtonsToRedirect tittle={'Уже зарегистрован?'} navigateTo={'/'} buttonText={'Войти'} />
     </BasePage>
 
   )
 }
+
+export const SingUpWithAuth = connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+)(SingUp)
 

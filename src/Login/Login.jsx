@@ -1,23 +1,18 @@
 import React from 'react'
 import {BasePage} from "../helpers/BasePage";
 import {connect} from "react-redux";
-import {authenticate} from "../actions";
-import {useHistory} from "react-router";
 import {Container, Typography} from "@material-ui/core";
-import {LoginForm} from "./LoginForm/LoginForm";
+import {LoginFormWithAuth} from "./LoginForm/LoginForm";
 import {ButtonsToRedirect} from "../helpers/ButtonsToRedirect";
+import {Redirect} from "react-router-dom";
 
-export const Login = ({authenticate}) => {
-  const history = useHistory()
+export const Login = ({ isLoggedIn}) => {
 
-  const onSubmitLogin = async (e) => {
-    e.preventDefault()
-    const {email, password} = e.target
-    await authenticate(email.value, password.value)
-    history.push('/maps')
+  if (isLoggedIn) {
+    return <Redirect to='/maps' />
   }
   return (
-    <BasePage>
+    <BasePage >
       <Container style={{
         display: "flex",
         padding: "0 102px 0 98px",
@@ -27,15 +22,16 @@ export const Login = ({authenticate}) => {
         <Typography data-testid='logInText' variant="h4" gutterBottom>
           Войти в кабинет
         </Typography>
-        <LoginForm onSubmit={onSubmitLogin}/>
+        <LoginFormWithAuth/>
       </Container>
       <ButtonsToRedirect tittle={'Новый пользователь?'} navigateTo={'/singUp'} buttonText={'Зарегистрируйтесь'}/>
 
     </BasePage>
+
   )
 }
 
 export const LoginWithAuth = connect(
   (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  {authenticate}
+  // {authenticate}
 )(Login)

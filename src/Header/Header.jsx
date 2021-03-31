@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppBar, Button, Container, Grid, makeStyles, Toolbar} from "@material-ui/core";
 import {Logo} from "./Logo/Logo";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {logOut} from "../actions";
 
@@ -24,7 +24,7 @@ export const Header = ({logOut}) => {
   const classes = useStyles();
 
   return (
-    <AppBar position="static" className={classes.header}>
+    <AppBar position="fixed" className={classes.header}>
       <Container>
         <Grid
           container
@@ -34,14 +34,21 @@ export const Header = ({logOut}) => {
         >
           <Logo/>
           <Toolbar disableGutters={true}>
-            <Button  color="inherit" ><Link data-testid='navigateMaps' to='/maps'>Maps</Link>
+            <Button component={NavLink} data-testid='navigateMaps' to="/maps" color="inherit"
+                    activeStyle={{color: '#ffc617'}} style={{color: '#ffffff'}}>
+              Карта
             </Button>
 
-            <Button  color="inherit" ><Link data-testid='navigateProfile' to='/profile'>Profile</Link>
+            <Button component={NavLink} data-testid='navigateProfile' to="/profile" color="inherit"
+                    activeStyle={{color: '#ffc617'}} style={{color: '#ffffff'}}>
+              Профиль
             </Button>
 
-            <Link to='/' data-testid='navigateLoginOut' color="inherit"
-                   onClick={logOut}>LOG OUT</Link>
+            <Button component={NavLink} data-testid='navigateLoginOut' to="/login" color="inherit"
+                    activeStyle={{color: '#ffc617'}} style={{color: '#ffffff'}} onClick={logOut}>
+              Выйти
+            </Button>
+
           </Toolbar>
 
         </Grid>
@@ -52,7 +59,9 @@ export const Header = ({logOut}) => {
 
 export const HeaderWithAuth = connect(
   null,
-  {logOut}
+  {
+    logOut
+  }
 )(Header)
 
 

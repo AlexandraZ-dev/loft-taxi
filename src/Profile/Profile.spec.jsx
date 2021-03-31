@@ -10,7 +10,8 @@ describe('Profile', () => {
   let store;
   beforeEach(() => {
     store = mockStore({
-      isSaved: false
+      isSaved: false,
+      isProfile: false,
     });
   });
   it('render elements correctly', () => {

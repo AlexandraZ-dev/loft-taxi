@@ -1,17 +1,31 @@
 import React from 'react'
-import {Button} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import {Button, Typography} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {notSaved} from "../../actions";
 
-
-export const ProfileSaved = () => {
+export const ProfileSaved = ({notSaved}) => {
   return (
     <>
-      <div data-testid='text'> Платёжные данные обновлены. Теперь вы можете заказывать такси.</div>
-      <Button fullWidth={true} variant='contained' color='primary'
-              style={{marginTop: '72px', borderRadius: "40px", fontSize: "1.3rem"}}>
-        <Link data-testid='link' to='/maps'>Перейти к заказу такси</Link>
+      <Typography
+        variant='body1'
+        data-testid='text'
+        style={{marginTop: '16px'}}
+      >
+        Платёжные данные обновлены. Теперь вы можете заказывать такси.
+      </Typography>
+      <Button component={NavLink} variant='contained'
+              color='primary'
+              style={{marginTop: '16px', borderRadius: "40px", fontSize: "1.3rem", color: 'black'}}
+              onClick={notSaved} to='/maps'>
+        Перейти к заказу такси
       </Button>
     </>
   )
 }
+
+export const ProfileSavedWithAuth = connect(
+  null,
+  {notSaved}
+)(ProfileSaved)
 
